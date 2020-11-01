@@ -1,0 +1,7 @@
+#weekdays {
+    display: flex;
+    flex-wrap: wrap;
+}
+#weekdays p {
+    padding: 0 1em;
+}
