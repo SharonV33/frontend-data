@@ -20,10 +20,10 @@ fetch(url1)
         const cleanArray = cleanData(columnArray)
         //transform string numbers to integers
         const arrayToInt = stringToNumber(cleanArray)
-        console.log(arrayToInt)
+        return arrayToInt.lenght
     })
 //fetch data from second  resource
-fetch(url2)
+etch(url2)
 //turn fetched data into .json
     .then(result => {
         return result.json()
@@ -33,7 +33,8 @@ fetch(url2)
         const columnArray = sortData(parkingData, column3, column4, column5)
         //remove 0 and undefined values
         const cleanArray = cleanData(columnArray)
-        console.log('clean array 2 ', cleanArray)
+        // console.log('clean array 2 ', cleanArray)
+        return cleanArray.length
     })
 
 
