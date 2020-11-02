@@ -23,7 +23,7 @@ fetch(url1)
         return arrayToInt.lenght
     })
 //fetch data from second  resource
-etch(url2)
+fetch(url2)
 //turn fetched data into .json
     .then(result => {
         return result.json()
@@ -34,7 +34,7 @@ etch(url2)
         //remove 0 and undefined values
         const cleanArray = cleanData(columnArray)
         // console.log('clean array 2 ', cleanArray)
-        return cleanArray.length
+        console.log cleanArray.length
     })
 
 
