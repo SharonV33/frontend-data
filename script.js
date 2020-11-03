@@ -13,58 +13,72 @@ const width = 450
 const height = 450
 const radius = 200
 
+// const data = [{
+//     name: 'disabled',
+//     value: 100
+// },
+//     {
+//         name: 'total',
+//         value: 500
+//     }]
+
 defaultExport('https://opendata.rdw.nl/resource/b3us-f26s.json')
-    .then(dataFromUrl => console.log(dataFromUrl))
+    .then(dataFromUrl => {
+        const data = [{
+            name: 'disabled',
+            value: dataFromUrl
+        },
+            {
+                name: 'total',
+                value: 100
+            }]
+        buildPieChart(data)
 
-//this wil eventually be real data from the parkingscript file
-const data = [{
-    name: 'disabled',
-    value: 5
-    },
-    {
-    name: 'total',
-    value: 50
-}]
 
-//create an svg with the static width and height
-const svg = d3.select("#vis")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
+    })
 
-//create a group element in the center of the svg. this will be the centre of the pie chart
-const g = svg.append('g')
-    .attr('transform', `translate(${width/2}, ${height/2})`)
 
-//set up a domain and colors to be used in the chart
-const color = d3.scaleOrdinal()
-    .domain(data)
-    .range(["#98abc5", "#8a89a6"])
+//build the chart
+function buildPieChart(data) {
+    const svg = d3.select("#vis")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
 
-//assign the data to the chart, for each data element it used the value of the selected object
-const pie = d3.pie()
-    .value(data => data.value)
+    //create a group element in the center of the svg. this will be the centre of the pie chart
+    const g = svg.append('g')
+        .attr('transform', `translate(${width / 2}, ${height / 2})`)
 
-//create the outer and inner path of the chart
-//inner radius is how far from the center the graph starts
-//outer radius is how far from the center the graph ends
-const path = d3.arc()
-    .outerRadius(radius)
-    .innerRadius(0)
+    //set up a domain and colors to be used in the chart
+    const color = d3.scaleOrdinal(data)
+        .domain(data)
+        .range(["#98abc5", "#8a89a6"])
 
-//create arcs with the desired values of that group
-const pies = g.selectAll('.arc')
-    .data(pie(data))
-    .enter()
-    .append('g')
-    .attr('class', 'arc')
+    //assign the data to the chart, for each data element it used the value of the selected object
+    const pie = d3.pie()
+        .value(data => data.value)
 
-//set up the chart
-pies
-    .append('path')
-    .attr('d', path)
-    .attr('fill', d => color(d.data.value))
+    //create the outer and inner path of the chart
+    //inner radius is how far from the center the graph starts
+    //outer radius is how far from the center the graph ends
+    const path = d3.arc()
+        .outerRadius(radius)
+        .innerRadius(0)
 
+    //create arcs with the desired values of that group
+    const pies = g.selectAll('.arc')
+        .data(pie(data))
+        .enter()
+        .append('g')
+        .attr('class', 'arc')
+
+    //set up the chart
+    pies
+        .append('path')
+        .attr('d', path)
+        .attr('fill', d => color(d.data.value))
+
+}
 //legend
 
 // select the svg area

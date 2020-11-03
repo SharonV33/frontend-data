@@ -17,22 +17,24 @@ const column4 = 'location'
 const column5 = 'areadesc'
 
 //fetch data from first url
-const fetchFirstUrl = fetch(url1)
-//turn fetched data into .json
-    .then(result => {
-        return result.json()
-    })
-    .then(parkingData => {
-        //create new array with just the desired data
-        const columnArray = sortData(parkingData, column1, column2, column3)
-        //remove 0 and undefined values
-        const cleanArray = cleanData(columnArray)
-        //transform string numbers to integers
-        const arrayToInt = stringToNumber(cleanArray)
-        const disabledParkingGarages = arrayToInt.length
-        return disabledParkingGarages
-    })
-//fetch data from second  resource
+function fetchFirstUrl() {
+    return fetch(url1)
+    //turn fetched data into .json
+        .then(result => {
+            return result.json()
+        })
+        .then(parkingData => {
+            //create new array with just the desired data
+            const columnArray = sortData(parkingData, column1, column2, column3)
+            //remove 0 and undefined values
+            const cleanArray = cleanData(columnArray)
+            //transform string numbers to integers
+            const arrayToInt = stringToNumber(cleanArray)
+            const disabledParkingGarages = arrayToInt.length
+            return disabledParkingGarages
+        })
+}
+//data from second  resource
 const fetchSecondUrl = fetch(url2)
 //turn fetched data into .json
     .then(result => {
