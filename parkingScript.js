@@ -23,8 +23,8 @@ fetch(url1)
         const cleanArray = cleanData(columnArray)
         //transform string numbers to integers
         const arrayToInt = stringToNumber(cleanArray)
-        const disabledParkingSpaces = arrayToInt.lenght
-        return disabledParkingSpaces
+        const disabledParkingGarages = arrayToInt.lenght
+        return disabledParkingGarages
     })
 //fetch data from second  resource
 fetch(url2)
@@ -38,6 +38,7 @@ fetch(url2)
         //remove 0 and undefined values
         const cleanArray = cleanData(columnArray)
         // console.log('clean array 2 ', cleanArray)
+        const allParkingGarages = cleanArray.length
         return cleanArray.length
     })
 
