@@ -1,5 +1,12 @@
 //define export
-// export {fetchSecondUrl}
+export default async function (url) {
+    const res = await fetchFirstUrl(url)
+    const data = await res.json()
+    return data
+}
+
+    // export {fetchFirstUrl, fetchSecondUrl}
+
 
 //defining variables
 const url1  = 'https://opendata.rdw.nl/resource/b3us-f26s.json'
@@ -11,7 +18,7 @@ const column4 = 'location'
 const column5 = 'areadesc'
 
 //fetch data from first url
-fetch(url1)
+const fetchFirstUrl = fetch(url1)
 //turn fetched data into .json
     .then(result => {
         return result.json()
@@ -27,7 +34,7 @@ fetch(url1)
         return disabledParkingGarages
     })
 //fetch data from second  resource
-fetch(url2)
+const fetchSecondUrl = fetch(url2)
 //turn fetched data into .json
     .then(result => {
         return result.json()
@@ -39,7 +46,7 @@ fetch(url2)
         const cleanArray = cleanData(columnArray)
         // console.log('clean array 2 ', cleanArray)
         const allParkingGarages = cleanArray.length
-        return cleanArray.length
+        return allParkingGarages
     })
 
 

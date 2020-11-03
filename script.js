@@ -1,11 +1,20 @@
 //sources
 //https://www.d3-graph-gallery.com/graph/pie_basic.html
 //https://www.youtube.com/watch?v=lnXf1mpFGb8&ab_channel=FrontendTips
+// import {disabledParkingGarages, allParkingGarages} from './parkingScript'
+//
+// console.log('disabled', disabledParkingGarages)
+// console.log('total', allParkingGarages)
+import 'regenerator-runtime/runtime'
+import defaultExport from './parkingScript'
 
 //set up static width, height and radius for the visualisation
 const width = 450,
       height = 450,
       radius = 200
+
+defaultExport('https://opendata.rdw.nl/resource/b3us-f26s.json')
+    .then(dataFromUrl => console.log(dataFromUrl)
 
 //this wil eventually be real data from the parkingscript file
 const data = [{
@@ -14,11 +23,11 @@ const data = [{
     },
     {
     name: 'total',
-    value: fetchSecondUrl
+    value: 50
 }]
 
 //create an svg with the static width and height
-var svg = d3.select("#vis")
+const svg = d3.select("#vis")
     .append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -34,7 +43,6 @@ const color = d3.scaleOrdinal()
 
 //assign the data to the chart, for each data element it used the value of the selected object
 const pie = d3.pie()
-    .sort(null)
     .value(data => data.value)
 
 //create the outer and inner path of the chart
@@ -60,10 +68,10 @@ pies
 //legend
 
 // select the svg area
-var svg = d3.select("#legend")
-
-// Handmade legend
-svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "#69b3a2")
-svg.append("circle").attr("cx",200).attr("cy",160).attr("r", 6).style("fill", "#404080")
-svg.append("text").attr("x", 220).attr("y", 130).text("variable A").style("font-size", "15px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 220).attr("y", 160).text("variable B").style("font-size", "15px").attr("alignment-baseline","middle")
+// var svg = d3.select("#legend")
+//
+// // Handmade legend
+// svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "#69b3a2")
+// svg.append("circle").attr("cx",200).attr("cy",160).attr("r", 6).style("fill", "#404080")
+// svg.append("text").attr("x", 220).attr("y", 130).text("variable A").style("font-size", "15px").attr("alignment-baseline","middle")
+// svg.append("text").attr("x", 220).attr("y", 160).text("variable B").style("font-size", "15px").attr("alignment-baseline","middle")
