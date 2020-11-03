@@ -9,12 +9,12 @@ import 'regenerator-runtime/runtime'
 import defaultExport from './parkingScript'
 
 //set up static width, height and radius for the visualisation
-const width = 450,
-      height = 450,
-      radius = 200
+const width = 450
+const height = 450
+const radius = 200
 
 defaultExport('https://opendata.rdw.nl/resource/b3us-f26s.json')
-    .then(dataFromUrl => console.log(dataFromUrl)
+    .then(dataFromUrl => console.log(dataFromUrl))
 
 //this wil eventually be real data from the parkingscript file
 const data = [{

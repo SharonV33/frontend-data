@@ -1,11 +1,10 @@
 //define export
 export default async function (url) {
     const res = await fetchFirstUrl(url)
-    const data = await res.json()
+    const data = await res
     return data
 }
 
-    // export {fetchFirstUrl, fetchSecondUrl}
 
 
 //defining variables
@@ -30,7 +29,7 @@ const fetchFirstUrl = fetch(url1)
         const cleanArray = cleanData(columnArray)
         //transform string numbers to integers
         const arrayToInt = stringToNumber(cleanArray)
-        const disabledParkingGarages = arrayToInt.lenght
+        const disabledParkingGarages = arrayToInt.length
         return disabledParkingGarages
     })
 //fetch data from second  resource
