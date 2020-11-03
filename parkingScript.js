@@ -1,3 +1,6 @@
+//define export
+// export {fetchSecondUrl}
+
 //defining variables
 const url1  = 'https://opendata.rdw.nl/resource/b3us-f26s.json'
 const url2 = 'https://opendata.rdw.nl/resource/t5pc-eb34.json'
@@ -20,7 +23,8 @@ fetch(url1)
         const cleanArray = cleanData(columnArray)
         //transform string numbers to integers
         const arrayToInt = stringToNumber(cleanArray)
-        return arrayToInt.lenght
+        const disabledParkingSpaces = arrayToInt.lenght
+        return disabledParkingSpaces
     })
 //fetch data from second  resource
 fetch(url2)
@@ -34,7 +38,7 @@ fetch(url2)
         //remove 0 and undefined values
         const cleanArray = cleanData(columnArray)
         // console.log('clean array 2 ', cleanArray)
-        console.log cleanArray.length
+        return cleanArray.length
     })
 
 
@@ -46,13 +50,6 @@ function sortData(dataArray, column1Name, column2Name, column3Name) {
 //convert string data to integers
 //with help of Gijs Laarman
 function stringToNumber(stringData) {
-    // //map the array and replace the entries on position i with integers, i is declared in
-    // //the while loop where the function gets called
-    // const parsedData = stringData.map(array => {
-    //     array[i] = parseInt(array[i])
-    //     return array
-    // })
-    // return parsedData
     const allNumbers = stringData.map(entry => {
         if (typeof entry === String) {
             return parseInt(entry)

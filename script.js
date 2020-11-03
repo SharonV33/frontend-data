@@ -10,11 +10,11 @@ const width = 450,
 //this wil eventually be real data from the parkingscript file
 const data = [{
     name: 'disabled',
-    value: 10
+    value: 5
     },
     {
     name: 'total',
-    value: 20
+    value: fetchSecondUrl
 }]
 
 //create an svg with the static width and height
@@ -56,3 +56,14 @@ pies
     .append('path')
     .attr('d', path)
     .attr('fill', d => color(d.data.value))
+
+//legend
+
+// select the svg area
+var svg = d3.select("#legend")
+
+// Handmade legend
+svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "#69b3a2")
+svg.append("circle").attr("cx",200).attr("cy",160).attr("r", 6).style("fill", "#404080")
+svg.append("text").attr("x", 220).attr("y", 130).text("variable A").style("font-size", "15px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 220).attr("y", 160).text("variable B").style("font-size", "15px").attr("alignment-baseline","middle")
