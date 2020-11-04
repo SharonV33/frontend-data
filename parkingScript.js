@@ -1,27 +1,29 @@
 export default async function (url) {
     const res = await fetchUrl(url)
     const data = await res
+    console.log('export',data)
     return data
 }
 
 //defining variables
-// const url2 = 'https://opendata.rdw.nl/resource/t5pc-eb34.json'
-const column3 = 'areaid'
-const column4 = 'location'
-const column5 = 'areadesc'
+const url1 = 'https://opendata.rdw.nl/resource/t5pc-eb34.json'
+const column1 = 'areaid'
+const column2 = 'location'
+const column3 = 'areadesc'
 
 //data from second  resource
-function fetchUrl(url) {
-    fetch(url)
+function fetchUrl() {
+    return fetch(url1)
     //turn fetched data into .json
         .then(result => {
             return result.json()
         })
         .then(parkingData => {
             //create new array with just the desired data
-            const columnArray = sortData(parkingData, column3, column4, column5)
+            const columnArray = sortData(parkingData, column1, column2, column3)
             //remove 0 and undefined values
             const cleanArray = cleanData(columnArray)
+
             const allParkingGarages = cleanArray.length
             return allParkingGarages
         })
