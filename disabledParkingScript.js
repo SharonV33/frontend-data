@@ -1,29 +1,28 @@
 export default async function (url) {
-    const res = await fetchUrl(url)
-    const data = await res
-    return data
+    const res = await fetchFirstUrl(url)
+    const data1 = await res
+    return data1
 }
 
-//defining variables
-// const url2 = 'https://opendata.rdw.nl/resource/t5pc-eb34.json'
+const url1  = 'https://opendata.rdw.nl/resource/b3us-f26s.json'
+const column1 = 'disabledaccess'
+const column2 = 'capacity'
 const column3 = 'areaid'
-const column4 = 'location'
-const column5 = 'areadesc'
 
-//data from second  resource
-function fetchUrl(url) {
-    fetch(url)
+//fetch data from first url
+function fetchFirstUrl() {
+    return fetch(url1)
     //turn fetched data into .json
         .then(result => {
             return result.json()
         })
         .then(parkingData => {
             //create new array with just the desired data
-            const columnArray = sortData(parkingData, column3, column4, column5)
+            const columnArray = sortData(parkingData, column1, column2, column3)
             //remove 0 and undefined values
             const cleanArray = cleanData(columnArray)
-            const allParkingGarages = cleanArray.length
-            return allParkingGarages
+            const disabledParkingGarages = cleanArray.length
+            return disabledParkingGarages
         })
 }
 
@@ -44,7 +43,6 @@ function cleanData(array) {
     })
     //return the cleaned array
     return noZeroArray
-
 }
 
 

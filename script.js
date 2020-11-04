@@ -1,29 +1,23 @@
 //sources
 //https://www.d3-graph-gallery.com/graph/pie_basic.html
 //https://www.youtube.com/watch?v=lnXf1mpFGb8&ab_channel=FrontendTips
-// import {disabledParkingGarages, allParkingGarages} from './parkingScript'
-//
-// console.log('disabled', disabledParkingGarages)
-// console.log('total', allParkingGarages)
+
 import 'regenerator-runtime/runtime'
-import defaultExport from './parkingScript'
+import disabledParking from './disabledParkingScript'
+import allParking from './parkingScript'
 
 //set up static width, height and radius for the visualisation
 const width = 450
 const height = 450
 const radius = 200
 
-// const data = [{
-//     name: 'disabled',
-//     value: 100
-// },
-//     {
-//         name: 'total',
-//         value: 500
-//     }]
+allParking('https://opendata.rdw.nl/resource/t5pc-eb34.json')
+    .then(datafromUrl => console.log('script', datafromUrl))
 
-defaultExport('https://opendata.rdw.nl/resource/b3us-f26s.json')
+//load data from parkingscript
+disabledParking('https://opendata.rdw.nl/resource/b3us-f26s.json')
     .then(dataFromUrl => {
+        //set data from disabledparkingscript in data element
         const data = [{
             name: 'disabled',
             value: dataFromUrl
@@ -32,6 +26,7 @@ defaultExport('https://opendata.rdw.nl/resource/b3us-f26s.json')
                 name: 'total',
                 value: 100
             }]
+        //start the buildPieChart function with the data element
         buildPieChart(data)
 
 
@@ -79,6 +74,7 @@ function buildPieChart(data) {
         .attr('fill', d => color(d.data.value))
 
 }
+
 //legend
 
 // select the svg area
