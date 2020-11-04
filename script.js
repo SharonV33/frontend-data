@@ -3,34 +3,36 @@
 //https://www.youtube.com/watch?v=lnXf1mpFGb8&ab_channel=FrontendTips
 
 import 'regenerator-runtime/runtime'
-import disabledParking from './disabledParkingScript'
-import allParking from './parkingScript'
+// import disabledParking from './disabledParkingScript'
+// import allParking from './parkingScript'
+import fetchJson from './jsonscript'
 
 //set up static width, height and radius for the visualisation
 const width = 450
 const height = 450
 const radius = 200
-
-allParking('https://opendata.rdw.nl/resource/t5pc-eb34.json')
-    .then(datafromUrl => console.log('script', datafromUrl))
+console.log(fetchJson())
+// allParking('https://opendata.rdw.nl/resource/t5pc-eb34.json')
+//     .then(datafromUrl => console.log('import', datafromUrl))
 
 //load data from parkingscript
-disabledParking('https://opendata.rdw.nl/resource/b3us-f26s.json')
+fetchJson()
     .then(dataFromUrl => {
         //set data from disabledparkingscript in data element
         const data = [{
             name: 'disabled',
-            value: dataFromUrl
+            value: 10
         },
             {
                 name: 'total',
-                value: 100
+                value: 10
             }]
         //start the buildPieChart function with the data element
         buildPieChart(data)
-
+        // legend(data)
 
     })
+
 
 
 //build the chart
@@ -77,11 +79,25 @@ function buildPieChart(data) {
 
 //legend
 
-// select the svg area
-// var svg = d3.select("#legend")
-//
-// // Handmade legend
-// svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "#69b3a2")
-// svg.append("circle").attr("cx",200).attr("cy",160).attr("r", 6).style("fill", "#404080")
-// svg.append("text").attr("x", 220).attr("y", 130).text("variable A").style("font-size", "15px").attr("alignment-baseline","middle")
-// svg.append("text").attr("x", 220).attr("y", 160).text("variable B").style("font-size", "15px").attr("alignment-baseline","middle")
+// function legend(data) {
+    // const svg = d3.select("#legend")
+    //     .value(data => data.value)
+    //
+    // const dataValue = svg.d3.value(data => data.value)
+    // const color = d3.scaleOrdinal(data)
+    //     .domain(data)
+    //     .range(["#98abc5", "#8a89a6"])
+    //
+    // svg
+    //     .append("circle")
+    //     .attr("cx", 200)
+    //     .attr("cy", 130)
+    //     .attr("r", 6)
+    //     .attr('fill', d => color(d.data.value))
+// }
+
+
+    // svg.append("circle").attr("cx",200).attr("cy",160).attr("r", 6).style("fill", "#404080")
+    // svg.append("text").attr("x", 220).attr("y", 130).text("variable A").style("font-size", "15px").attr("alignment-baseline","middle")
+    // svg.append("text").attr("x", 220).attr("y", 160).text("variable B").style("font-size", "15px").attr("alignment-baseline","middle")
+
