@@ -11,17 +11,14 @@ import fetchJson from './jsonscript'
 const width = 450
 const height = 450
 const radius = 200
-console.log(fetchJson())
-// allParking('https://opendata.rdw.nl/resource/t5pc-eb34.json')
-//     .then(datafromUrl => console.log('import', datafromUrl))
+
 
 //load data from parkingscript
 fetchJson()
     .then(dataFromUrl => {
-        //set data from disabledparkingscript in data element
         const data = [{
             name: 'disabled',
-            value: 10
+            value: dataFromUrl
         },
             {
                 name: 'total',
