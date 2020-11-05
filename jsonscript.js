@@ -11,7 +11,7 @@ function fetchData() {
         })
         .then(parkingData => {
             //select only first 50 items for testing script
-            const selection = parkingData.slice(0, 50)
+            const selection = parkingData.slice(0, 100)
 
             //select data from wrapper
             const dataUnwrapped = selection.map(item => item.parkingFacilityInformation)
@@ -24,34 +24,18 @@ function fetchData() {
 
             //create an empty array to push correct and edited values
             let cleanDisabledCheck = []
-            let allDisabled = 0
-            let notDisabled = 0
+
 
             // if a value is undefined, make it false because it is very likely that this
             //garage is not disability friendly
-            for (data of disabledAccess) {
+            for (const data of disabledAccess) {
                 if (data === undefined) {
                     cleanDisabledCheck.push(false)
                 } else {
                     cleanDisabledCheck.push(data)
                 }
             }
-
-            console.log(cleanDisabledCheck)
-
             //count the amount of trues and falses in the array and add 1 to the correct variable
-            for (item of cleanDisabledCheck) {
-                if (item === true) {
-                    allDisabled++
-                } else if (item === false) {
-                    notDisabled++
-                }
-             }
-
-            // console.log('disabled', allDisabled)
-            // console.log('not', notDisabled)
-            return allDisabled, notDisabled
+            return cleanDisabledCheck
         })
 }
-
-fetchData()

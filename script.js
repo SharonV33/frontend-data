@@ -16,14 +16,26 @@ const radius = 200
 //load data from parkingscript
 fetchJson()
     .then(dataFromUrl => {
+        let allDisabled = 0
+        let notDisabled = 0
+
+        for (const item of dataFromUrl) {
+            if (item === true) {
+                allDisabled++
+            } else if (item === false) {
+                notDisabled++
+            }
+        }
+
         const data = [{
             name: 'disabled',
-            value: dataFromUrl
+            value: allDisabled
         },
             {
                 name: 'total',
-                value: 10
+                value: notDisabled
             }]
+
         //start the buildPieChart function with the data element
         buildPieChart(data)
         // legend(data)
