@@ -11,7 +11,7 @@ function fetchData() {
         })
         .then(parkingData => {
             //select only first 50 items for testing script
-            const selection = parkingData.slice(0, 100)
+            const selection = parkingData.slice(0, 10)
 
             //select data from wrapper
             const dataUnwrapped = selection.map(item => item.parkingFacilityInformation)
@@ -35,7 +35,10 @@ function fetchData() {
                     cleanDisabledCheck.push(data)
                 }
             }
-            //count the amount of trues and falses in the array and add 1 to the correct variable
+            const postalAddress = dataUnwrapped.map(item => item.operator)
+            const province = postalAddress.map(item => item.province)
+            console.log(province)
+
             return cleanDisabledCheck
         })
 }
