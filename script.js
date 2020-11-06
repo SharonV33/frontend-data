@@ -2,6 +2,7 @@
 //https://www.d3-graph-gallery.com/graph/pie_basic.html
 //https://www.youtube.com/watch?v=lnXf1mpFGb8&ab_channel=FrontendTips
 
+//fix for issue with parcel, tip from Gijs Laarman
 import 'regenerator-runtime/runtime'
 
 import fetchJson from './jsonscript'
@@ -27,7 +28,7 @@ fetchJson()
         const data = [{
             name: 'disabled',
             value: allDisabled
-        },
+            },
             {
                 name: 'total',
                 value: notDisabled
@@ -36,14 +37,6 @@ fetchJson()
         //start the buildPieChart function with the data element
         buildPieChart(data)
         legend(data)
-        barChart(data)
+        barChart(data, allDisabled)
 
     })
-
-
-
-//build the chart
-
-
-//legend
-

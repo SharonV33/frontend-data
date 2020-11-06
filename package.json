@@ -20,5 +20,8 @@
   "homepage": "https://github.com/SharonV33/functional-programming#readme",
   "devDependencies": {
     "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "d3": "^6.2.0"
   }
 }
