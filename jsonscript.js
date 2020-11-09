@@ -28,6 +28,7 @@ function fetchData() {
 
             // if a value is undefined, make it false because it is very likely that this
             //garage is not disability friendly
+
             for (const data of disabledAccess) {
                 if (data === undefined) {
                     cleanDisabledCheck.push(false)
@@ -35,9 +36,13 @@ function fetchData() {
                     cleanDisabledCheck.push(data)
                 }
             }
-            const postalAddress = dataUnwrapped.map(item => item.operator)
+
+            const postalAddress = dataUnwrapped.map(item => item.operator.postalAddress)
             const province = postalAddress.map(item => item.province)
-            console.log(province)
+            for (provincie of province){
+                console.log(provincie)
+            }
+
 
             return cleanDisabledCheck
         })
