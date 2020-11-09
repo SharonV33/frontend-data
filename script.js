@@ -5,10 +5,10 @@
 //fix for issue with parcel, tip from Gijs Laarman
 import 'regenerator-runtime/runtime'
 
-import fetchJson from '../frontend-data/jsonscript'
-import buildPieChart from '../frontend-data/pieChart'
-import legend from '../frontend-data/legend'
-import barChart from '../frontend-data/barchart'
+import fetchJson from './jsonscript'
+import buildPieChart from './pieChart'
+import legend from './legend'
+import barChart from './barchart'
 
 
 //load data from parkingscript
