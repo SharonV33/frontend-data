@@ -64,16 +64,15 @@ function fetchData() {
             // }
 
 
-            for (let counter = 0; counter <= cleanProvinceCheck.length; counter++) {​​​​​​​​
-                console.log('counter', counter)
-                allData.push(
-                    {​​​​​​​
-                    province: cleanProvinceCheck[counter],
-                    disabled: cleanDisabledCheck[counter]
-                    }​​​​​​​​
-                )
-            }​​​​​​​​
-            console.log(allData)
+            // for (let counter = 0; counter <= cleanProvinceCheck.length; counter++) {​​​​​​​​
+            //     console.log('counter', counter)
+            //     allData.push(
+            //         {​​​​​​​
+            //         "province": cleanProvinceCheck[counter], "disabled": cleanDisabledCheck[counter]
+            //         }​​​​​​​​
+            //     )
+            // }​​​​​​​​
+            // console.log(allData)
 
 
 
