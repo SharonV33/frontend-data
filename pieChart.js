@@ -10,6 +10,7 @@ export default function buildPieChart(data) {
         .append("svg")
         .attr("width", width)
         .attr("height", height)
+        .attr("class", "pie")
 
     //create a group element in the center of the svg. this will be the centre of the pie chart
     const g = svg.append('g')

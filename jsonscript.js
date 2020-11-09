@@ -10,8 +10,11 @@ function fetchData() {
             return result.json()
         })
         .then(parkingData => {
+            //create an empty array to push correct and edited values
+            let cleanDisabledCheck = []
+
             //select only first 50 items for testing script
-            const selection = parkingData.slice(0, 10)
+            const selection = parkingData.slice(0, 1000)
 
             //select data from wrapper
             const dataUnwrapped = selection.map(item => item.parkingFacilityInformation)
@@ -22,13 +25,8 @@ function fetchData() {
             //select disabledaccess
             const disabledAccess = specifications.map(item => item.disabledAccess)
 
-            //create an empty array to push correct and edited values
-            let cleanDisabledCheck = []
-
-
             // if a value is undefined, make it false because it is very likely that this
             //garage is not disability friendly
-
             for (const data of disabledAccess) {
                 if (data === undefined) {
                     cleanDisabledCheck.push(false)
@@ -37,11 +35,31 @@ function fetchData() {
                 }
             }
 
-            const postalAddress = dataUnwrapped.map(item => item.operator.postalAddress)
-            const province = postalAddress.map(item => item.province)
-            for (provincie of province){
-                console.log(provincie)
-            }
+            //check if item has the correct values, else return null
+                const postalAddress = dataUnwrapped.map(item => {
+                    if (!item.operator){
+                        return null
+                    }
+                    if (!item.operator.postalAddress){
+                        return null
+                    }
+                    if (!item.operator.postalAddress.province){
+                        return null
+                    }
+                    return item.operator.postalAddress.province
+                })
+            console.log(postalAddress)
+
+            const data =
+
+                [{
+                    name: 'disabled',
+                    value: allDisabled
+                },
+                {
+                    name: 'total',
+                    value: notDisabled
+                }]
 
 
             return cleanDisabledCheck

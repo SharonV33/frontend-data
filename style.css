@@ -1,6 +1,43 @@
-svg{
-    background-color: darkgray;
+body {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 10% 90%;
 }
+
+h1 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
 rect {
     fill: steelblue;
+}
+
+#vis {
+    display: flex;
+    justify-content: center;
+}
+
+#legend {
+    display: none;
+}
+
+#bar {
+    display: none;
+}
+
+.pie {
+}
+.buttons {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.buttons button {
+    height: 3em;
+    width: 12em;
+    margin: 1em 3em;
+    background-color: #ffffff;
+    border: 1px solid #575757;
+    color: #575757;
 }
