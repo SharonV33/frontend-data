@@ -1,3 +1,5 @@
+import 'regenerator-runtime/runtime'
+
 export default async function () {
     const res = await fetchData()
     const data = await res
@@ -13,6 +15,9 @@ function fetchData() {
             //create an empty array to push correct and edited values
             let cleanDisabledCheck = []
 
+            //create an empty array to push all data to
+            let allData = []
+
             //select only first 50 items for testing script
             const selection = parkingData.slice(0, 1000)
 
@@ -27,7 +32,7 @@ function fetchData() {
 
             // if a value is undefined, make it false because it is very likely that this
             //garage is not disability friendly
-            for (const data of disabledAccess) {
+            for (let data of disabledAccess) {
                 if (data === undefined) {
                     cleanDisabledCheck.push(false)
                 } else {
@@ -36,7 +41,7 @@ function fetchData() {
             }
 
             //check if item has the correct values, else return null
-                const postalAddress = dataUnwrapped.map(item => {
+                const cleanProvinceCheck = dataUnwrapped.map(item => {
                     if (!item.operator){
                         return null
                     }
@@ -48,19 +53,31 @@ function fetchData() {
                     }
                     return item.operator.postalAddress.province
                 })
-            console.log(postalAddress)
+            console.log(cleanProvinceCheck.length)
+            //
+            // let counter = 0
+            // for (counter < cleanProvinceCheck.length; counter++;) {
+            //     console.log(counter)
+            //     allData.push({province: cleanProvinceCheck[counter], disabled: cleanDisabledCheck[counter]})
+            //
+            //     return allData
+            // }
 
-            const data =
 
-                [{
-                    name: 'disabled',
-                    value: allDisabled
-                },
-                {
-                    name: 'total',
-                    value: notDisabled
-                }]
+            for (let counter = 0; counter <= cleanProvinceCheck.length; counter++) {​​​​​​​​
+                console.log('counter', counter)
+                allData.push(
+                    {​​​​​​​
+                    province: cleanProvinceCheck[counter],
+                    disabled: cleanDisabledCheck[counter]
+                    }​​​​​​​​
+                )
+            }​​​​​​​​
+            console.log(allData)
 
+
+
+            console.log(allData)
 
             return cleanDisabledCheck
         })

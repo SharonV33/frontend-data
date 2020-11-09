@@ -1,8 +1,8 @@
 {
-  "name": "functional-programming",
+  "name": "frontend-data",
   "version": "1.0.0",
   "description": "In this repository, I will be working on an assignment part of the tech track at CMD. This assignment will  be going into cleaning up data sets, working with d3 and eventually creating data visualisations.",
-  "main": "redundant/parkingScript.js",
+  "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel index.html",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SharonV33/functional-programming.git"
+    "url": "git+https://github.com/SharonV33/frontend-data.git"
   },
   "author": "sharon",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SharonV33/functional-programming/issues"
+    "url": "https://github.com/SharonV33/frontend-data/issues"
   },
-  "homepage": "https://github.com/SharonV33/functional-programming#readme",
+  "homepage": "https://github.com/SharonV33/frontend-data#readme",
   "devDependencies": {
     "parcel-bundler": "^1.12.4"
   },
