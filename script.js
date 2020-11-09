@@ -3,7 +3,7 @@
 //https://www.youtube.com/watch?v=lnXf1mpFGb8&ab_channel=FrontendTips
 
 //fix for issue with parcel, tip from Gijs Laarman
-// import 'regenerator-runtime/runtime'
+import 'regenerator-runtime/runtime'
 
 import fetchJson from '../frontend-data/jsonscript'
 import buildPieChart from '../frontend-data/pieChart'
