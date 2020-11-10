@@ -12,22 +12,24 @@ fetchJson()
     .then(dataFromUrl => {
         let allDisabled = 0
         let notDisabled = 0
+        let UT = [dataFromUrl[1]]
+        console.log(UT)
 
-        for (const item of dataFromUrl) {
-            if (item === true) {
-                allDisabled++
-            } else if (item === false) {
-                notDisabled++
-            }
-        }
+        // for (let item of dataFromUrl) {
+        //     if (item === true) {
+        //         allDisabled++
+        //     } else if (item === false) {
+        //         notDisabled++
+        //     }
+        // }
 
         const data = [{
             name: 'disabled',
-            value: allDisabled
+            value: 10
             },
             {
                 name: 'total',
-                value: notDisabled
+                value: 50
             }]
 
         //start the buildPieChart function with the data element

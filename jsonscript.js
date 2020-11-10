@@ -18,6 +18,20 @@ function fetchData() {
             //create an empty array to push all data to
             let allData = []
 
+            //create an empty array to push data per province to
+            let NH = []
+            let ZH = []
+            let UT = []
+            let GD = []
+            let DR = []
+            let OV = []
+            let FL = []
+            let GR = []
+            let FR = []
+            let NB = []
+            let LB = []
+            let ZL = []
+
             //select only first 50 items for testing script
             const selection = parkingData.slice(0, 1000)
 
@@ -61,8 +75,48 @@ function fetchData() {
                 allData.push(({province: cleanProvinceCheck[counter], disabled: cleanDisabledCheck[counter]}))
             }
 
-            console.log(allData)
+            //create array per province
+            for (let item of allData) {
+                if (item.province == "Groningen") {
+                    GR.push(item)
+                } else if (item.province == "Friesland") {
+                    FR.push(item)
+                }
+                else if (item.province == "Drenthe"){
+                    DR.push(item)
+                }
+                else if (item.province == "Utrecht"){
+                    UT.push(item)
+                }
+                else if (item.province == "Overijsel"){
+                    OV.push(item)
+                }
+                else if (item.province == "Flevoland"){
+                    FL.push(item)
+                }
+                else if (item.province == "Zeeland"){
+                    ZL.push(item)
+                }
+                else if (item.province == "Limburg"){
+                    LB.push(item)
+                }
+                else if (item.province == "Gelderland"){
+                    GD.push(item)
+                }
+                else if (item.province == "Drenthe"){
+                    DR.push(item)
+                }
+                else if (item.province == "Noord Holland"){
+                    NH.push(item)
+                }
+                else if (item.province == "Zuid Holland"){
+                    ZH.push(item)
+                }
+                else if (item.province == "Noord Brabant"){
+                    NB.push(item)
+                }
+            }
 
-            return cleanDisabledCheck
+            return {allData, NH, ZH, NB, DR, GD, LB, ZL, FL, OV, UT, FR, GR}
         })
 }
