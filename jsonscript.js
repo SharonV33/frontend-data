@@ -41,6 +41,7 @@ function fetchData() {
             }
 
             //check if item has the correct values, else return null
+            //with help from Laurens Aarnoudse
                 const cleanProvinceCheck = dataUnwrapped.map(item => {
                     if (!item.operator){
                         return null
@@ -53,28 +54,12 @@ function fetchData() {
                     }
                     return item.operator.postalAddress.province
                 })
-            console.log(cleanProvinceCheck.length)
-            //
-            // let counter = 0
-            // for (counter < cleanProvinceCheck.length; counter++;) {
-            //     console.log(counter)
-            //     allData.push({province: cleanProvinceCheck[counter], disabled: cleanDisabledCheck[counter]})
-            //
-            //     return allData
-            // }
 
-
-            // for (let counter = 0; counter <= cleanProvinceCheck.length; counter++) {​​​​​​​​
-            //     console.log('counter', counter)
-            //     allData.push(
-            //         {​​​​​​​
-            //         "province": cleanProvinceCheck[counter], "disabled": cleanDisabledCheck[counter]
-            //         }​​​​​​​​
-            //     )
-            // }​​​​​​​​
-            // console.log(allData)
-
-
+            //combine all data that was collected in one array with objects per item
+            //with help from chelsea Doeleman
+            for (let counter = 0; counter <= cleanDisabledCheck.length; counter++) {
+                allData.push(({province: cleanProvinceCheck[counter], disabled: cleanDisabledCheck[counter]}))
+            }
 
             console.log(allData)
 

@@ -1,3 +1,7 @@
+//sources
+//https://www.d3-graph-gallery.com/graph/pie_basic.html
+//https://www.youtube.com/watch?v=lnXf1mpFGb8&ab_channel=FrontendTips
+
 export default function buildPieChart(data) {
 
     //set up static width, height and radius for the visualisation

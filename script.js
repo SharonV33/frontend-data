@@ -1,7 +1,3 @@
-//sources
-//https://www.d3-graph-gallery.com/graph/pie_basic.html
-//https://www.youtube.com/watch?v=lnXf1mpFGb8&ab_channel=FrontendTips
-
 //fix for issue with parcel, tip from Gijs Laarman
 import 'regenerator-runtime/runtime'
 
