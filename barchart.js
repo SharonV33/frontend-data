@@ -74,4 +74,8 @@ export default function barChart(data) {
             .attr("fill", "#8A89A6")
 
     }
+
+    renderBarChart(data)
+
+
 }
