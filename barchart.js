@@ -6,16 +6,15 @@ import { max } from 'd3'
 
 export default function barChart(data) {
 
-    d3.select(".pie")
+    d3.select("#vis")
         .selectAll("*")
         .remove()
 
-    d3.select("#bar")
-        .selectAll("*")
-        .remove()
 
     //select element to create bar chart in
-    const svg = d3.select("#bar")
+    const container = d3.select("#vis")
+
+        const svg = container.append("svg").attr("class", "bar")
     //set width and height equal to that of the svg element
     const margin = {top: 30, right: 30, bottom: 70, left: 80}
     const width = 460  - margin.left - margin.right
@@ -75,8 +74,4 @@ export default function barChart(data) {
             .attr("fill", "#8A89A6")
 
     }
-
-    renderBarChart(data)
-
-
 }

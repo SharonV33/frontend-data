@@ -5,13 +5,10 @@ export default function buildPieChart(data) {
 
     //remove current chart
     //source https://stackoverflow.com/questions/14422198/how-do-i-remove-all-children-elements-from-a-node-and-then-apply-them-again-with
-    d3.select(".pie")
+    d3.select("#vis")
         .selectAll("*")
         .remove()
 
-    d3.select("#bar")
-        .selectAll("*")
-        .remove()
 
     //set up static width, height and radius for the visualisation
     const width = 450
@@ -19,9 +16,11 @@ export default function buildPieChart(data) {
     const radius = 200
 
     //select element to build chart in
-    const svg = d3.select(".pie")
+    const svg = d3.select("#vis")
+        .append("svg")
         .attr("width", width)
         .attr("height", height)
+        .attr("class", "pie")
 
     //create a group element in the center of the svg. this will be the centre of the pie chart
     const g = svg.append('g')
