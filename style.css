@@ -19,13 +19,6 @@ h1 {
 #legend {
     display: none;
 }
-
-#bar {
-    /*display: none;*/
-}
-
-.pie {
-}
 .buttons {
     display: flex;
     width: 100%;
@@ -40,6 +33,6 @@ h1 {
     color: #575757;
 }
 
-#NH, #ZH, #UT, #OV, #NB, #LB, #ZL{
+#NH, #ZH, #UT, #OV, #NB, #LB, #ZL, #GD{
     background-color: black;
 }

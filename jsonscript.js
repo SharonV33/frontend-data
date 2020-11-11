@@ -67,6 +67,30 @@ function fetchData() {
                 allData.push(({province: cleanProvinceCheck[counter], disabled: cleanDisabledCheck[counter]}))
             }
 
+            //convert the true/false disability value to variabled with numbered values
+            //to create the chart easier
+            function readableData(data){
+                let allDisabled = 0
+                let notDisabled = 0
+                for (let item of data) {
+                    if (item.disabled === true) {
+                        allDisabled++
+                    } else if (item.disabled === false) {
+                        notDisabled++
+                    }
+                }
+                const object = [
+                    {
+                    name: 'disabled',
+                    value: allDisabled
+                    },
+                    {
+                        name: 'total',
+                        value: notDisabled
+                    }]
+                return object
+            }
+
 
             let rawGR = allData.filter(function(data){
                 return data.province === "Groningen"
@@ -106,28 +130,6 @@ function fetchData() {
             })
 
 
-            function readableData(data){
-                let allDisabled = 0
-                let notDisabled = 0
-                for (let item of data) {
-                    if (item.disabled === true) {
-                        allDisabled++
-                    } else if (item.disabled === false) {
-                        notDisabled++
-                    }
-                }
-
-                const object = [{
-                    name: 'disabled',
-                    value: allDisabled
-                },
-                    {
-                        name: 'total',
-                        value: notDisabled
-                    }]
-                return object
-            }
-
 
             let GR = readableData(rawGR)
             let FR = readableData(rawFR)
@@ -141,9 +143,22 @@ function fetchData() {
             let NB = readableData(rawNB)
             let ZH = readableData(rawZH)
             let NH = readableData(rawNH)
+            let finalData = readableData(allData)
+            let allProvinces = []
+            allProvinces.push(
+                {name: "Noord Holland", isDisabled: NH[0].value, notDisabled: NH[1].value},
+                {name: "Zuid Holland", isDisabled: ZH[0].value, notDisabled: ZH[1].value},
+                {name: "Noord Brabant", isDisabled: NB[0].value, notDisabled: NB[1].value},
+                {name: "Drenthe", isDisabled: DR[0].value, notDisabled: DR[1].value},
+                {name: "Gelderland", isDisabled: GD[0].value, notDisabled: GD[1].value},
+                {name: "Limburg", isDisabled: LB[0].value, notDisabled: LB[1].value},
+                {name: "Zeeland", isDisabled: ZL[0].value, notDisabled: ZL[1].value},
+                {name: "Flevoland", isDisabled: FL[0].value, notDisabled: FL[1].value},
+                {name: "Overijsel", isDisabled: OV[0].value, notDisabled: OV[1].value},
+                {name: "Utrecht", isDisabled: UT[0].value, notDisabled: UT[1].value},
+                {name: "Friesland", isDisabled: FR[0].value, notDisabled: FR[1].value},
+                {name: "Groningen", isDisabled: GR[0].value, notDisabled: GR[1].value})
 
-
-
-            return {allData, NH, ZH, NB, DR, GD, LB, ZL, FL, OV, UT, FR, GR}
+            return {finalData, allProvinces, NH, ZH, NB, DR, GD, LB, ZL, FL, OV, UT, FR, GR}
         })
 }

@@ -49,12 +49,13 @@ fetchJson()
                 .on("click", () => {buildPieChart(dataFromUrl.NH)})
 
         d3.select("#overview")
-                .on("click", () => {buildPieChart(dataFromUrl.allData)})
-            console.log('gr', dataFromUrl.GR)
+                .on("click", () => {buildPieChart(dataFromUrl.finalData)})
+
+         d3.select("#compare")
+             .on("click", () => {barChart(dataFromUrl.allProvinces)})
 
 
-        //start the buildPieChart function with the data element
         // legend(dataFromUrl)
-        // barChart(dataFromUrl)
+
 
     })

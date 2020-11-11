@@ -6,11 +6,19 @@ import { max } from 'd3'
 
 export default function barChart(data) {
 
+    d3.select(".pie")
+        .selectAll("*")
+        .remove()
+
+    d3.select("#bar")
+        .selectAll("*")
+        .remove()
+
     //select element to create bar chart in
     const svg = d3.select("#bar")
     //set width and height equal to that of the svg element
-    const margin = {top: 30, right: 30, bottom: 70, left: 60}
-    const width = 460 - margin.left - margin.right
+    const margin = {top: 30, right: 30, bottom: 70, left: 80}
+    const width = 460  - margin.left - margin.right
     const height = 400 - margin.top - margin.bottom
 
 
@@ -27,18 +35,20 @@ export default function barChart(data) {
         const xAxis = d3.scaleBand()
             .range([ 0, width ])
             .domain(data.map(data =>  data.name))
-            .padding(0.2)
+            //give each bar some padding
+            .padding(0.5)
 
         //create a group for the x axis and style the text
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(xAxis))
             .selectAll("text")
+            .attr("transform", "translate(-10,0)rotate(-90)")
             .style("text-anchor", "end")
 
         //create Y axis
         const yAxix = d3.scaleLinear()
-            .domain([0, max(data, data => data.value)])
+            .domain([0, max(data, data => data.isDisabled)])
             .range([ height, 0])
 
         //add Y axis to graph
@@ -52,15 +62,16 @@ export default function barChart(data) {
             .enter()
             .append("rect")
 
-            //give the bar the correct values per axis
+            //give the bar the correct location for where the bar should be
             .attr("x", function(data) { return xAxis(data.name) })
-            .attr("y", function(data) { return yAxix(data.value) })
+            .attr("y", function(data) { return yAxix(data.isDisabled) })
 
             //give the bar the correct width
-            //bandwidth is a standard d3 function. it gives the bars all the same
-            //width without letting them touch
+            //bandwidth is a standard d3 function. it gives the bars all the same width
             .attr("width", xAxis.bandwidth())
-            .attr("height", function(data) { return height - yAxix(data.value) })
+            //give the bar the correct height based on the value of data.isDisabled
+            .attr("height", function(data) { return height - yAxix(data.isDisabled) })
+            //add colour
             .attr("fill", "#8A89A6")
 
     }
