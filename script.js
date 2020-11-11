@@ -1,5 +1,6 @@
 //fix for issue with parcel, tip from Gijs Laarman
 import 'regenerator-runtime/runtime'
+import 'd3'
 
 import fetchJson from './jsonscript'
 import buildPieChart from './pieChart'
@@ -10,29 +11,50 @@ import barChart from './barchart'
 //load data from parkingscript
 fetchJson()
     .then(dataFromUrl => {
-        let allDisabled = 0
-        let notDisabled = 0
+        //add event listeners to buttons to select the data used for the chart
+        d3.select('#GR')
+                .on("click", () => {buildPieChart(dataFromUrl.GR)})
 
-        for (let item of dataFromUrl.allData) {
-            if (item.disabled === true) {
-                allDisabled++
-            } else if (item.disabled === false) {
-                notDisabled++
-            }
-        }
+        d3.select('#FR')
+                .on("click", () => {buildPieChart(dataFromUrl.FR)})
 
-        const data = [{
-                name: 'disabled',
-                value: allDisabled
-            },
-            {
-                name: 'total',
-                value: notDisabled
-            }]
+         d3.select('#UT')
+                .on("click", () => {buildPieChart(dataFromUrl.UT)})
+
+        d3.select('#OV')
+                .on("click", () => {buildPieChart(dataFromUrl.OV)})
+
+        d3.select('#FL')
+                .on("click", () => {buildPieChart(dataFromUrl.FL)})
+
+        d3.select('#ZL')
+                .on("click", () => {buildPieChart(dataFromUrl.ZL)})
+
+        d3.select('#LB')
+                .on("click", () => {buildPieChart(dataFromUrl.LB)})
+
+        d3.select('#GD')
+                .on("click", () => {buildPieChart(dataFromUrl.GD)})
+
+        d3.select('#DR')
+                .on("click", () => {buildPieChart(dataFromUrl.DR)})
+
+        d3.select('#NB')
+                .on("click", () => {buildPieChart(dataFromUrl.NB)})
+
+        d3.select('#ZH')
+                .on("click", () => {buildPieChart(dataFromUrl.ZH)})
+
+        d3.select('#NH')
+                .on("click", () => {buildPieChart(dataFromUrl.NH)})
+
+        d3.select("#overview")
+                .on("click", () => {buildPieChart(dataFromUrl.allData)})
+            console.log('gr', dataFromUrl.GR)
+
 
         //start the buildPieChart function with the data element
-        buildPieChart(data, dataFromUrl)
-        legend(data)
-        barChart(data, allDisabled)
+        // legend(dataFromUrl)
+        // barChart(dataFromUrl)
 
     })

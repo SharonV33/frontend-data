@@ -18,36 +18,28 @@ function fetchData() {
             //create an empty array to push all data to
             let allData = []
 
-            //create an empty array to push data per province to
-            let NH = []
-            let ZH = []
-            let UT = []
-            let GD = []
-            let DR = []
-            let OV = []
-            let FL = []
-            let GR = []
-            let FR = []
-            let NB = []
-            let LB = []
-            let ZL = []
-
             //select only first 50 items for testing script
             const selection = parkingData.slice(0, 1000)
 
             //select data from wrapper
             const dataUnwrapped = selection.map(item => item.parkingFacilityInformation)
 
-            //select specifications object
-            const specifications = dataUnwrapped.map(item => item.specifications[0])
-
-            //select disabledaccess
-            const disabledAccess = specifications.map(item => item.disabledAccess)
+            //check if item has the correct values, else return null
+            //with help from Laurens Aarnoudse
+            const disabledCheck = dataUnwrapped.map(item => {
+                if(!item.specifications[0]){
+                    return null
+                }
+                if(!item.specifications[0].disabledAccess) {
+                    return null
+                }
+                return item.specifications[0].disabledAccess
+            })
 
             // if a value is undefined, make it false because it is very likely that this
             //garage is not disability friendly
-            for (let data of disabledAccess) {
-                if (data === undefined) {
+            for (let data of disabledCheck) {
+                if (data === null) {
                     cleanDisabledCheck.push(false)
                 } else {
                     cleanDisabledCheck.push(data)
@@ -75,47 +67,82 @@ function fetchData() {
                 allData.push(({province: cleanProvinceCheck[counter], disabled: cleanDisabledCheck[counter]}))
             }
 
-            //create array per province
-            for (let item of allData) {
-                if (item.province == "Groningen") {
-                    GR.push(item)
-                } else if (item.province == "Friesland") {
-                    FR.push(item)
+
+            let rawGR = allData.filter(function(data){
+                return data.province === "Groningen"
+                })
+            let rawFR = allData.filter(function(data){
+                return data.province === "Friesland"
+            })
+            let rawUT = allData.filter(function(data){
+                return data.province === "Utrecht"
+            })
+            let rawOV = allData.filter(function(data){
+                return data.province === "Overijsel"
+            })
+            let rawFL = allData.filter(function(data){
+                return data.province === "Flevoland"
+            })
+            let rawZL = allData.filter(function(data){
+                return data.province === "Zeeland"
+            })
+            let rawLB = allData.filter(function(data){
+                return data.province === "Limburg"
+            })
+            let rawGD = allData.filter(function(data){
+                return data.province === "Gelderland"
+            })
+            let rawDR = allData.filter(function(data){
+                return data.province === "Drenthe"
+            })
+            let rawNH = allData.filter(function(data){
+                return data.province === "Noord Holland"
+            })
+            let rawZH = allData.filter(function(data){
+                return data.province === "Zuid Holland"
+            })
+            let rawNB = allData.filter(function(data){
+                return data.province === "Noord Brabant"
+            })
+
+
+            function readableData(data){
+                let allDisabled = 0
+                let notDisabled = 0
+                for (let item of data) {
+                    if (item.disabled === true) {
+                        allDisabled++
+                    } else if (item.disabled === false) {
+                        notDisabled++
+                    }
                 }
-                else if (item.province == "Drenthe"){
-                    DR.push(item)
-                }
-                else if (item.province == "Utrecht"){
-                    UT.push(item)
-                }
-                else if (item.province == "Overijsel"){
-                    OV.push(item)
-                }
-                else if (item.province == "Flevoland"){
-                    FL.push(item)
-                }
-                else if (item.province == "Zeeland"){
-                    ZL.push(item)
-                }
-                else if (item.province == "Limburg"){
-                    LB.push(item)
-                }
-                else if (item.province == "Gelderland"){
-                    GD.push(item)
-                }
-                else if (item.province == "Drenthe"){
-                    DR.push(item)
-                }
-                else if (item.province == "Noord Holland"){
-                    NH.push(item)
-                }
-                else if (item.province == "Zuid Holland"){
-                    ZH.push(item)
-                }
-                else if (item.province == "Noord Brabant"){
-                    NB.push(item)
-                }
+
+                const object = [{
+                    name: 'disabled',
+                    value: allDisabled
+                },
+                    {
+                        name: 'total',
+                        value: notDisabled
+                    }]
+                return object
             }
+
+
+            let GR = readableData(rawGR)
+            let FR = readableData(rawFR)
+            let UT = readableData(rawUT)
+            let OV = readableData(rawOV)
+            let FL = readableData(rawFL)
+            let ZL = readableData(rawZL)
+            let LB = readableData(rawLB)
+            let GD = readableData(rawGD)
+            let DR = readableData(rawDR)
+            let NB = readableData(rawNB)
+            let ZH = readableData(rawZH)
+            let NH = readableData(rawNH)
+
+
 
             return {allData, NH, ZH, NB, DR, GD, LB, ZL, FL, OV, UT, FR, GR}
         })

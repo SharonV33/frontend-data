@@ -16,18 +16,18 @@ export default function barChart(data) {
 
 
     const renderBarChart = data => {
-        //set up X axis
-        const xAxis = d3.scaleBand()
-            .range([ 0, width ])
-            .domain(data.map(data =>  data.name))
-            .padding(0.2)
-
         //give the svg the correct size
         svg.attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
+                "translate(" + margin.left + "," + margin.top + ")")
+
+        //set up X axis
+        const xAxis = d3.scaleBand()
+            .range([ 0, width ])
+            .domain(data.map(data =>  data.name))
+            .padding(0.2)
 
         //create a group for the x axis and style the text
         svg.append("g")
@@ -38,7 +38,7 @@ export default function barChart(data) {
 
         //create Y axis
         const yAxix = d3.scaleLinear()
-            .domain([0, max(data, d => d.value)])
+            .domain([0, max(data, data => data.value)])
             .range([ height, 0])
 
         //add Y axis to graph
@@ -61,7 +61,7 @@ export default function barChart(data) {
             //width without letting them touch
             .attr("width", xAxis.bandwidth())
             .attr("height", function(data) { return height - yAxix(data.value) })
-            .attr("fill", "#69b3a2")
+            .attr("fill", "#8A89A6")
 
     }
 

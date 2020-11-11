@@ -9,9 +9,7 @@ h1 {
     grid-column-end: 3;
 }
 
-rect {
-    fill: steelblue;
-}
+
 
 #vis {
     display: flex;
@@ -23,7 +21,7 @@ rect {
 }
 
 #bar {
-    display: none;
+    /*display: none;*/
 }
 
 .pie {
