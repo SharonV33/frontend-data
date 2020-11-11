@@ -1,7 +1,7 @@
 //sources
 //https://www.d3-graph-gallery.com/graph/pie_basic.html
 //https://www.youtube.com/watch?v=lnXf1mpFGb8&ab_channel=FrontendTips
-export default function buildPieChart(data) {
+export default function buildPieChart(data, selected) {
 
     //remove current chart
     //source https://stackoverflow.com/questions/14422198/how-do-i-remove-all-children-elements-from-a-node-and-then-apply-them-again-with
@@ -9,6 +9,9 @@ export default function buildPieChart(data) {
         .selectAll("*")
         .remove()
 
+    d3.select("#" + selected)
+
+    console.log(data.name)
 
     //set up static width, height and radius for the visualisation
     const width = 450

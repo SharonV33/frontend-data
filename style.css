@@ -27,6 +27,10 @@ h1 {
     width: 100%;
     flex-wrap: wrap;
 }
+.buttons p {
+    width: 80%;
+    text-align: center;
+}
 .buttons button {
     height: 3em;
     width: 12em;

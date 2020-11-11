@@ -159,6 +159,8 @@ function fetchData() {
                 {name: "Friesland", isDisabled: FR[0].value, notDisabled: FR[1].value},
                 {name: "Groningen", isDisabled: GR[0].value, notDisabled: GR[1].value})
 
+            console.log(ZH);
+
             return {finalData, allProvinces, NH, ZH, NB, DR, GD, LB, ZL, FL, OV, UT, FR, GR}
         })
 }

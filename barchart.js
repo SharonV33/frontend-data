@@ -4,7 +4,7 @@
 
 import { max } from 'd3'
 
-export default function barChart(data) {
+export default function barChart(data, selected) {
 
     d3.select("#vis")
         .selectAll("*")
