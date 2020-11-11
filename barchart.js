@@ -11,12 +11,13 @@ export default function barChart(data, selected) {
         .remove()
 
 
+
     //select element to create bar chart in
     const container = d3.select("#vis")
 
-        const svg = container.append("svg").attr("class", "bar")
+    const svg = container.append("svg").attr("class", "bar")
     //set width and height equal to that of the svg element
-    const margin = {top: 30, right: 30, bottom: 70, left: 80}
+    const margin = {top: 10, right: 0, bottom: 70, left: 0}
     const width = 460  - margin.left - margin.right
     const height = 400 - margin.top - margin.bottom
 
