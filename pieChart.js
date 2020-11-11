@@ -9,9 +9,11 @@ export default function buildPieChart(data, selected) {
         .selectAll("*")
         .remove()
 
-    d3.select("#" + selected)
 
-    console.log(data.name)
+    d3.select(".title")
+        .text(selected)
+
+
 
     //set up static width, height and radius for the visualisation
     const width = 450

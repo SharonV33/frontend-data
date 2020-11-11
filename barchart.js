@@ -10,6 +10,9 @@ export default function barChart(data, selected) {
         .selectAll("*")
         .remove()
 
+    d3.select(".title")
+        .text(selected)
+
 
 
     //select element to create bar chart in
@@ -55,6 +58,7 @@ export default function barChart(data, selected) {
         svg.append("g")
             .call(d3.axisLeft(yAxix))
 
+        console.log(data)
         //create bars
         svg.selectAll("bar")
             .data(data)
