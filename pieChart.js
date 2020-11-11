@@ -6,6 +6,8 @@ import 'd3'
 
 export default function buildPieChart(data) {
 
+    //remove current chart
+    //source https://stackoverflow.com/questions/14422198/how-do-i-remove-all-children-elements-from-a-node-and-then-apply-them-again-with
     d3.select(".pie")
         .selectAll("*")
         .remove()

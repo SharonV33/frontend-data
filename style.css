@@ -39,3 +39,7 @@ h1 {
     border: 1px solid #575757;
     color: #575757;
 }
+
+#NH, #ZH, #UT, #OV, #NB, #LB, #ZL{
+    background-color: black;
+}
