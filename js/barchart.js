@@ -15,12 +15,6 @@ export default function barChart(data, selected) {
         .selectAll("*")
         .remove()
 
-    // d3.select(".title")
-    //     .text(selected)
-
-
-
-
     //select element to create bar chart in
     const container = d3.select("#vis")
 
@@ -52,7 +46,7 @@ export default function barChart(data, selected) {
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(xAxis))
             .selectAll("text")
-            .attr("transform", "translate(-10,0)rotate(-90)")
+            .attr("transform", "translate(-10,10)rotate(-90)")
             .style("text-anchor", "end")
 
 
@@ -65,9 +59,6 @@ export default function barChart(data, selected) {
         svg.append("g")
             .call(d3.axisLeft(yAxix))
 
-            // .attr("transform", "translate(30, 0)")
-
-        console.log(data)
         //create bars
         svg.selectAll("bar")
             .data(data)
@@ -86,7 +77,6 @@ export default function barChart(data, selected) {
             .attr("height", function(data) { return height - yAxix(data.isDisabled) })
             //add colour
             .attr("fill", "#8A89A6")
-
     }
 
     renderBarChart(data)

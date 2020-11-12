@@ -14,6 +14,7 @@ export default function legend(data) {
         .attr("height", 100)
         .style("border", "1px solid darkgray")
 
+    //why does this not work?
     svg.selectAll("p")
         .text(legend)
 
