@@ -63,4 +63,14 @@ the guys from my support group
 * Robin Langhorst
 * Marco Fijan
 
+## sources used
+**bar chart**
+https://www.youtube.com/watch?v=NlBt-7PuaLk&ab_channel=CurranKelleher
+https://www.d3-graph-gallery.com/graph/barplot_basic.html
+
+**pie chart**
+https://www.d3-graph-gallery.com/graph/pie_basic.html
+https://www.youtube.com/watch?v=lnXf1mpFGb8&ab_channel=FrontendTips
+
+
 MIT License
