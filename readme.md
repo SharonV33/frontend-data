@@ -19,6 +19,7 @@ Data needed:
 * In what province are these garages located
 
 **Digital concept sketch**
+
 <img src="https://github.com/SharonV33/frontend-data/blob/main/wiki%20images/digital001.png" width="600" />
 
 
