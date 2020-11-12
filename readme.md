@@ -18,7 +18,11 @@ Data needed:
 * what garage has disability parking spaces 
 * In what province are these garages located
 
-more information about my research questions can be found in [my wiki](https://github.com/SharonV33/functional-programming/wiki/Interesting-insights-in-the-RDW-dataset)
+**Digital concept sketch**
+<img src="https://github.com/SharonV33/frontend-data/blob/main/wiki%20images/digital001.png" width="600" />
+
+
+more information about my research questions can be found in [my wiki](https://github.com/SharonV33/frontend-data/wiki/Interesting-insights-in-the-RDW-dataset)
 
 ### more information
 
