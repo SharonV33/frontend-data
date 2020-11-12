@@ -9,20 +9,16 @@ h1 {
     grid-column-end: 3;
 }
 
-
-
 #vis {
     display: flex;
     justify-content: center;
 }
 .bar {
     margin-top: 3em;
+    overflow: visible;
+    margin-left: 3em;
 }
 
-#legend {
-    align-self: center;
-
-}
 .buttons {
     display: flex;
     width: 100%;
@@ -40,7 +36,6 @@ button {
     border: 1px solid #575757;
     color: #575757;
 }
-
 #NH, #ZH, #UT, #OV, #NB, #LB, #ZL, #GD{
     background-color: black;
 }

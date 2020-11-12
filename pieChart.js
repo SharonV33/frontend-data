@@ -20,6 +20,7 @@ export default function buildPieChart(data, selected) {
         .style("background-color", "#FFF")
 
     d3.select("#workingButton")
+        .selectAll("button")
         .select("#" + selected)
         .style("background-color", "#ff0005")
 

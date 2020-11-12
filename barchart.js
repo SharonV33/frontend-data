@@ -26,8 +26,8 @@ export default function barChart(data, selected) {
 
     const svg = container.append("svg").attr("class", "bar")
     //set width and height equal to that of the svg element
-    const margin = {top: 10, right: 0, bottom: 70, left: 0}
-    const width = 460  - margin.left - margin.right
+    const margin = {top: 10, right: 0, bottom: 70, left: 30}
+    const width = 500  - margin.left - margin.right
     const height = 400 - margin.top - margin.bottom
 
 
@@ -55,6 +55,7 @@ export default function barChart(data, selected) {
             .attr("transform", "translate(-10,0)rotate(-90)")
             .style("text-anchor", "end")
 
+
         //create Y axis
         const yAxix = d3.scaleLinear()
             .domain([0, max(data, data => data.isDisabled)])
@@ -63,7 +64,8 @@ export default function barChart(data, selected) {
         //add Y axis to graph
         svg.append("g")
             .call(d3.axisLeft(yAxix))
-            .attr("transform", "translate(30, 0)")
+
+            // .attr("transform", "translate(30, 0)")
 
         console.log(data)
         //create bars
