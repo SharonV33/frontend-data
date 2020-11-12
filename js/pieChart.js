@@ -2,7 +2,7 @@
 //https://www.d3-graph-gallery.com/graph/pie_basic.html
 //https://www.youtube.com/watch?v=lnXf1mpFGb8&ab_channel=FrontendTips
 
-import legend from './js//legend'
+import legend from './legend'
 
 export default function buildPieChart(data, selected) {
 
@@ -16,10 +16,8 @@ export default function buildPieChart(data, selected) {
         .selectAll("button")
         .style("background-color", "#FFF")
 
-    d3.select("#workingButton")
-        .selectAll("button")
-        .select(selected)
-        .style("background-color", "#ff0005")
+    d3.select("#" + selected)
+        .style("background-color", "#98abc5")
 
 
     legend(data)

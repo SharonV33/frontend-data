@@ -2,7 +2,7 @@
   "name": "frontend-data",
   "version": "1.0.0",
   "description": "In this repository, I will be working on an assignment part of the tech track at CMD. This assignment will  be going into cleaning up data sets, working with d3 and eventually creating data visualisations.",
-  "main": "js/script.js",
+  "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel index.html",

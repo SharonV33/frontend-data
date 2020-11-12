@@ -2,9 +2,9 @@
 import 'regenerator-runtime/runtime'
 import 'd3'
 
-import fetchJson from './jsonscript'
-import buildPieChart from './pieChart'
-import barChart from './barchart'
+import fetchJson from './js/jsonscript'
+import buildPieChart from './js/pieChart'
+import barChart from './js/barchart'
 
 
 //load data from parkingscript
