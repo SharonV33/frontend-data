@@ -32,7 +32,7 @@ h1 {
     width: 80%;
     text-align: center;
 }
-.buttons button {
+button {
     height: 3em;
     width: 12em;
     margin: 1em 3em;

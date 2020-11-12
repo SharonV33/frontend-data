@@ -15,8 +15,8 @@ export default function barChart(data, selected) {
         .selectAll("*")
         .remove()
 
-    d3.select(".title")
-        .text(selected)
+    // d3.select(".title")
+    //     .text(selected)
 
 
 
@@ -63,6 +63,7 @@ export default function barChart(data, selected) {
         //add Y axis to graph
         svg.append("g")
             .call(d3.axisLeft(yAxix))
+            .attr("transform", "translate(30, 0)")
 
         console.log(data)
         //create bars
