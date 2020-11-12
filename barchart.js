@@ -18,13 +18,7 @@ export default function barChart(data, selected) {
     d3.select(".title")
         .text(selected)
 
-    d3.select(".workingButtons")
-        .selectAll(button)
-        .style("background-color", "#FFFFFF")
 
-    d3.selectAll(".workingButton")
-        .selectAll("#" + selected)
-        .style("background-color", "98abc5")
 
 
     //select element to create bar chart in

@@ -15,10 +15,14 @@ export default function buildPieChart(data, selected) {
     d3.select(".title")
         .text(selected)
 
-    d3.selectAll("button")
-        .style("background-color", "#FFFFFF")
+    d3.select(".workingButtons")
+        .selectAll("button")
+        .style("background-color", "#FFF")
 
-    d3.select("#" + selected)
+    d3.select(".workingButton")
+        .selectAll("button")
+        .selectAll("#" + selected)
+        .style("color", "red")
         .style("background-color", "#98abc5")
 
 

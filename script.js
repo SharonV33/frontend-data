@@ -19,40 +19,40 @@ fetchJson()
             .on("click", () => {buildPieChart(dataFromUrl.FR, "FR")})
 
          d3.select('#UT')
-             .on("click", () => {buildPieChart(dataFromUrl.UT, "Utrecht")})
+             .on("click", () => {buildPieChart(dataFromUrl.UT, "UT")})
 
         d3.select('#OV')
-            .on("click", () => {buildPieChart(dataFromUrl.OV, "Overijsel")})
+            .on("click", () => {buildPieChart(dataFromUrl.OV, "OV")})
 
         d3.select('#FL')
-            .on("click", () => {buildPieChart(dataFromUrl.FL, "Flevoland")})
+            .on("click", () => {buildPieChart(dataFromUrl.FL, "FL")})
 
         d3.select('#ZL')
-            .on("click", () => {buildPieChart(dataFromUrl.ZL, "Zeeland")})
+            .on("click", () => {buildPieChart(dataFromUrl.ZL, "ZL")})
 
         d3.select('#LB')
-            .on("click", () => {buildPieChart(dataFromUrl.LB, "Limburg")})
+            .on("click", () => {buildPieChart(dataFromUrl.LB, "LB")})
 
         d3.select('#GD')
-            .on("click", () => {buildPieChart(dataFromUrl.GD, "Gelderland")})
+            .on("click", () => {buildPieChart(dataFromUrl.GD, "GD")})
 
         d3.select('#DR')
-            .on("click", () => {buildPieChart(dataFromUrl.DR, "Drenthe")})
+            .on("click", () => {buildPieChart(dataFromUrl.DR, "DR")})
 
         d3.select('#NB')
-            .on("click", () => {buildPieChart(dataFromUrl.NB, "Noord Brabant")})
+            .on("click", () => {buildPieChart(dataFromUrl.NB, "NB")})
 
         d3.select('#ZH')
-            .on("click", () => {buildPieChart(dataFromUrl.ZH, "Zuid Holland")})
+            .on("click", () => {buildPieChart(dataFromUrl.ZH, "ZH")})
 
         d3.select('#NH')
-            .on("click", () => {buildPieChart(dataFromUrl.NH, "Noord Holland")})
+            .on("click", () => {buildPieChart(dataFromUrl.NH, "NH")})
 
         d3.select("#overview")
-            .on("click", () => {buildPieChart(dataFromUrl.finalData, "Nederland")})
+            .on("click", () => {buildPieChart(dataFromUrl.finalData, "overview")})
 
          d3.select("#compare")
-             .on("click", () => {barChart(dataFromUrl.allProvinces, "Vergelijk provincies")})
+             .on("click", () => {barChart(dataFromUrl.allProvinces, "compare")})
 
 
     })
