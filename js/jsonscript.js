@@ -12,11 +12,10 @@ function fetchData() {
             return result.json()
         })
         .then(parkingData => {
-            //create an empty array to push correct and edited values
-            let cleanDisabledCheck = []
-
             //create an empty array to push all data to
+            let cleanDisabledCheck = []
             let allData = []
+            let allProvinces = []
 
             //select only first 50 items for testing script
             const selection = parkingData.slice(0, 1000)
@@ -36,16 +35,6 @@ function fetchData() {
                 return item.specifications[0].disabledAccess
             })
 
-            // if a value is undefined, make it false because it is very likely that this
-            //garage is not disability friendly
-            for (let data of disabledCheck) {
-                if (data === null) {
-                    cleanDisabledCheck.push(false)
-                } else {
-                    cleanDisabledCheck.push(data)
-                }
-            }
-
             //check if item has the correct values, else return null
             //with help from Laurens Aarnoudse
                 const cleanProvinceCheck = dataUnwrapped.map(item => {
@@ -61,6 +50,15 @@ function fetchData() {
                     return item.operator.postalAddress.province
                 })
 
+            // if a value is undefined, make it false because it is very likely that this
+            //garage is not disability friendly
+            for (let data of disabledCheck) {
+                if (data === null) {
+                    cleanDisabledCheck.push(false)
+                } else {
+                    cleanDisabledCheck.push(data)
+                }
+            }
             //combine all data that was collected in one array with objects per item
             //with help from chelsea Doeleman
             for (let counter = 0; counter <= cleanDisabledCheck.length; counter++) {
@@ -144,7 +142,9 @@ function fetchData() {
             let ZH = readableData(rawZH)
             let NH = readableData(rawNH)
             let finalData = readableData(allData)
-            let allProvinces = []
+
+
+            //create a large dataset with all values per province for the bar chart
             allProvinces.push(
                 {name: "Noord Holland", isDisabled: NH[0].value, notDisabled: NH[1].value},
                 {name: "Zuid Holland", isDisabled: ZH[0].value, notDisabled: ZH[1].value},

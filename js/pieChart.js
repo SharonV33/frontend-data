@@ -5,9 +5,12 @@
 import legend from './legend'
 
 export default function buildPieChart(data, selected) {
+    //set up static width, height and radius for the visualisation
+    const width = 450
+    const height = 450
+    const radius = 200
 
     //remove current chart
-    //source https://stackoverflow.com/questions/14422198/how-do-i-remove-all-children-elements-from-a-node-and-then-apply-them-again-with
     d3.select("#vis")
         .selectAll("*")
         .remove()
@@ -19,14 +22,8 @@ export default function buildPieChart(data, selected) {
     d3.select("#" + selected)
         .style("background-color", "#98abc5")
 
-
+    //load legend
     legend(data)
-
-
-    //set up static width, height and radius for the visualisation
-    const width = 450
-    const height = 450
-    const radius = 200
 
     //select element to build chart in
     const svg = d3.select("#vis")

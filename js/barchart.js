@@ -5,7 +5,16 @@
 import { max } from 'd3'
 
 export default function barChart(data, selected) {
+    //select element to create bar chart in
+    const container = d3.select("#vis")
+    const svg = container.append("svg").attr("class", "bar")
 
+    //set width and height equal to that of the svg element
+    const margin = {top: 10, right: 0, bottom: 70, left: 30}
+    const width = 500  - margin.left - margin.right
+    const height = 400 - margin.top - margin.bottom
+
+    //clear currently loaded chart
     d3.select("#vis")
         .selectAll("*")
         .remove()
@@ -15,23 +24,13 @@ export default function barChart(data, selected) {
         .selectAll("*")
         .remove()
 
+    //change the colour of the selected button
     d3.select("#workingButtons")
         .selectAll("button")
         .style("background-color", "#FFF")
 
     d3.select("#" + selected)
         .style("background-color", "#98abc5")
-
-    //select element to create bar chart in
-    const container = d3.select("#vis")
-
-    const svg = container.append("svg").attr("class", "bar")
-    //set width and height equal to that of the svg element
-    const margin = {top: 10, right: 0, bottom: 70, left: 30}
-    const width = 500  - margin.left - margin.right
-    const height = 400 - margin.top - margin.bottom
-
-
 
     const renderBarChart = data => {
         //give the svg the correct size
