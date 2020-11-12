@@ -47,7 +47,6 @@ npm install
 4. run command to start project
 ```
 parcel index.html
-
 ```
 
 
