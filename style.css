@@ -20,8 +20,8 @@ h1 {
 }
 
 #legend {
-    /*display: none;*/
-    background-color: #575757;
+    align-self: center;
+
 }
 .buttons {
     display: flex;

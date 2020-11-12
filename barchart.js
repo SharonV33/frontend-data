@@ -3,7 +3,6 @@
 //and https://www.d3-graph-gallery.com/graph/barplot_basic.html
 
 import { max } from 'd3'
-import legend from './legend'
 
 export default function barChart(data, selected) {
 
@@ -11,9 +10,21 @@ export default function barChart(data, selected) {
         .selectAll("*")
         .remove()
 
+    d3.select("#legend")
+        .style("border", "none")
+        .selectAll("*")
+        .remove()
+
     d3.select(".title")
         .text(selected)
 
+    d3.select(".workingButtons")
+        .selectAll(button)
+        .style("background-color", "#FFFFFF")
+
+    d3.selectAll(".workingButton")
+        .selectAll("#" + selected)
+        .style("background-color", "98abc5")
 
 
     //select element to create bar chart in
@@ -82,7 +93,6 @@ export default function barChart(data, selected) {
     }
 
     renderBarChart(data)
-    legend(data)
 
 
 

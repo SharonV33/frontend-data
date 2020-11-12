@@ -1,5 +1,9 @@
 export default function legend(data) {
 
+    d3.select("#legend")
+        .selectAll("*")
+        .remove()
+
     const svg = d3.select("#legend")
     const size = 20
     const color = d3.scaleOrdinal()
@@ -7,7 +11,11 @@ export default function legend(data) {
         .range(["#98abc5", "#8a89a6"])
 
     svg.attr("width", 150)
-        .attr("height", 150)
+        .attr("height", 100)
+        .style("border", "1px solid darkgray")
+
+    svg.selectAll("p")
+        .text(legend)
 
 // Add one dot in the legend for each name.
     svg.selectAll("color")
@@ -19,7 +27,7 @@ export default function legend(data) {
         .attr("y", function(d,i){ return 25 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
         .attr("width", size)
         .attr("height", size)
-        .style('fill', data => color(data.data))
+        .style('fill', data => color(data.name))
         .text(function(data){ return data.value})
 
 // Add one dot in the legend for each name.
@@ -37,6 +45,5 @@ export default function legend(data) {
         .append("text")
         .attr("x", 25 + size*1.2)
         .attr("y", function(d,i){ return 50 + i*(size+5) + (size/2)})
-        .text(function(data){ return data.value})
 
 }

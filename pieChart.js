@@ -1,6 +1,9 @@
 //sources
 //https://www.d3-graph-gallery.com/graph/pie_basic.html
 //https://www.youtube.com/watch?v=lnXf1mpFGb8&ab_channel=FrontendTips
+
+import legend from './legend'
+
 export default function buildPieChart(data, selected) {
 
     //remove current chart
@@ -9,10 +12,17 @@ export default function buildPieChart(data, selected) {
         .selectAll("*")
         .remove()
 
-
     d3.select(".title")
         .text(selected)
 
+    d3.selectAll("button")
+        .style("background-color", "#FFFFFF")
+
+    d3.select("#" + selected)
+        .style("background-color", "#98abc5")
+
+
+    legend(data)
 
 
     //set up static width, height and radius for the visualisation

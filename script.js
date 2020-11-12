@@ -4,7 +4,6 @@ import 'd3'
 
 import fetchJson from './jsonscript'
 import buildPieChart from './pieChart'
-import legend from './legend'
 import barChart from './barchart'
 
 
@@ -14,10 +13,10 @@ fetchJson()
         //add event listeners to buttons to select the data used for the chart
 
         d3.select('#GR')
-            .on("click", () => {buildPieChart(dataFromUrl.GR, "Groningen")})
+            .on("click", () => {buildPieChart(dataFromUrl.GR, "GR")})
 
         d3.select('#FR')
-            .on("click", () => {buildPieChart(dataFromUrl.FR, "Friesland")})
+            .on("click", () => {buildPieChart(dataFromUrl.FR, "FR")})
 
          d3.select('#UT')
              .on("click", () => {buildPieChart(dataFromUrl.UT, "Utrecht")})
