@@ -3,6 +3,7 @@
 //and https://www.d3-graph-gallery.com/graph/barplot_basic.html
 
 import { max } from 'd3'
+import legend from './legend'
 
 export default function barChart(data, selected) {
 
@@ -81,6 +82,8 @@ export default function barChart(data, selected) {
     }
 
     renderBarChart(data)
+    legend(data)
+
 
 
 }

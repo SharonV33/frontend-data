@@ -20,14 +20,15 @@ h1 {
 }
 
 #legend {
-    display: none;
+    /*display: none;*/
+    background-color: #575757;
 }
 .buttons {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
 }
-.buttons p {
+.buttons section {
     width: 80%;
     text-align: center;
 }

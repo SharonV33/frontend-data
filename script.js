@@ -56,7 +56,4 @@ fetchJson()
              .on("click", () => {barChart(dataFromUrl.allProvinces, "Vergelijk provincies")})
 
 
-        legend(dataFromUrl)
-
-
     })
