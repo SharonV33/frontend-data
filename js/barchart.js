@@ -46,7 +46,6 @@ export default function barChart(dataFromBar, selected) {
     d3.select('#filter')
         .on("click", filterEmpty)
 
-
     function filterEmpty() {
         const filter = d3.selectAll('#filter').property('checked')
         let newData = []
@@ -64,7 +63,7 @@ export default function barChart(dataFromBar, selected) {
         else {
             newData = dataFromBar
         }
-        data = newData
+        // data = newData
 
         xAxis.domain(data.map(data =>  data.name))
 
@@ -81,12 +80,9 @@ export default function barChart(dataFromBar, selected) {
             .selectAll("rect")
             .remove()
 
-
-        return data
-
+        return newData
     }
 
-    renderBarChart(data)
 
     function renderBarChart(data) {
         //set up X axis
@@ -179,5 +175,8 @@ export default function barChart(dataFromBar, selected) {
 
     }
 
+    filterEmpty()
+    data = newData
+    renderBarChart(data)
 
 }
