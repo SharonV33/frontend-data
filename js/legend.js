@@ -1,10 +1,10 @@
 export default function legend(data) {
 
-    d3.select("#legend")
+    d3.select(".legend")
         .selectAll("*")
         .remove()
 
-    const svg = d3.select("#legend")
+    const svg = d3.select(".legend")
     const size = 20
 
     const color = d3.scaleOrdinal()
