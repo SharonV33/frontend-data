@@ -4,8 +4,9 @@
 
 import { max } from 'd3'
 
-export default function barChart(data, selected) {
+export default function barChart(dataFromBar, selected) {
     //select element to create bar chart in
+    let data = dataFromBar
     const container = d3.select("#vis")
 
     const svg = container.append("svg").attr("class", "bar")
@@ -13,6 +14,16 @@ export default function barChart(data, selected) {
     const margin = {top: 10, right: 0, bottom: 70, left: 30}
     const width = 500  - margin.left - margin.right
     const height = 400 - margin.top - margin.bottom
+    //create x axis
+    let xAxis = d3.scaleBand()
+        .range([ 0, width ])
+        .domain(data.map(data =>  data.name))
+        //give each bar some padding
+        .padding(0.5)
+    //create Y axis
+    let yAxix = d3.scaleLinear()
+        .domain([0, max(data, data => data.isDisabled)])
+        .range([ height, 0])
 
     //clear currently loaded chart
     d3.select("#vis")
@@ -32,8 +43,14 @@ export default function barChart(data, selected) {
     d3.select("#" + selected)
         .style("background-color", "#98abc5")
 
-    const renderBarChart = data => {
-        console.log(data)
+    d3.select('#filter')
+        .on("click", filterEmpty)
+
+    renderBarChart(data)
+
+
+    function renderBarChart(data) {
+        //set up X axis
         //give the svg the correct size
         svg.attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
@@ -41,15 +58,9 @@ export default function barChart(data, selected) {
             .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")")
 
-        //set up X axis
-        const xAxis = d3.scaleBand()
-            .range([ 0, width ])
-            .domain(data.map(data =>  data.name))
-            //give each bar some padding
-            .padding(0.5)
-
         //create a group for the x axis and style the text
         svg.append("g")
+            .attr("class","xAxis")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(xAxis))
             .selectAll("text")
@@ -57,17 +68,13 @@ export default function barChart(data, selected) {
             .style("text-anchor", "end")
 
 
-        //create Y axis
-        const yAxix = d3.scaleLinear()
-            .domain([0, max(data, data => data.isDisabled)])
-            .range([ height, 0])
-
         //add Y axis to graph
         svg.append("g")
+            .attr("class", "yAxis")
             .call(d3.axisLeft(yAxix))
 
         //create bars
-        svg.selectAll("bar")
+            svg.selectAll("bar")
             .data(data)
             //use enter to create the correct amount of bars based on the data
             .enter()
@@ -82,10 +89,54 @@ export default function barChart(data, selected) {
             .attr("height", function(data) { return height - yAxix(data.isDisabled) })
             //add colour
             .attr("fill", "#8A89A6")
+                .exit()
+                .remove("rect")
+
+
     }
 
-    renderBarChart(data)
+    function filterEmpty() {
+        const filter = d3.selectAll('#filter').property('checked')
+        let newData = []
 
+        if (filter === true) {
+            for (let item of dataFromBar) {
+                if (item.isDisabled > 0) {
+                    // console.log("disability accesible")
+                    newData.push({name: item.name, isDisabled: item.isDisabled})
+                }
+                else {
+                    // console.log("not disability accessible")
+                }
+            }
+        }
+        else {
+            newData = dataFromBar
+        }
+
+        data = newData
+
+        xAxis.domain(data.map(data =>  data.name))
+
+        svg.select(".xAxis")
+            .call(d3.axisBottom(xAxis))
+            .exit()
+            .remove("text")
+
+
+
+        svg.select("bar")
+            .attr("x", function(data) { return xAxis(data.name) })
+            .attr("y", function(data) { return yAxix(data.isDisabled) })
+            .attr("width", xAxis.bandwidth())
+            .exit()
+            .selectAll("rect")
+            .remove()
+
+
+        return data
+
+    }
 
 
 }
