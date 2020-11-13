@@ -7,8 +7,8 @@ import { max } from 'd3'
 export default function barChart(data, selected) {
     //select element to create bar chart in
     const container = d3.select("#vis")
-    const svg = container.append("svg").attr("class", "bar")
 
+    const svg = container.append("svg").attr("class", "bar")
     //set width and height equal to that of the svg element
     const margin = {top: 10, right: 0, bottom: 70, left: 30}
     const width = 500  - margin.left - margin.right
@@ -16,6 +16,7 @@ export default function barChart(data, selected) {
 
     //clear currently loaded chart
     d3.select("#vis")
+        .select(".pie")
         .selectAll("*")
         .remove()
 
@@ -24,7 +25,6 @@ export default function barChart(data, selected) {
         .selectAll("*")
         .remove()
 
-    //change the colour of the selected button
     d3.select("#workingButtons")
         .selectAll("button")
         .style("background-color", "#FFF")
@@ -33,6 +33,7 @@ export default function barChart(data, selected) {
         .style("background-color", "#98abc5")
 
     const renderBarChart = data => {
+        console.log(data)
         //give the svg the correct size
         svg.attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
@@ -71,11 +72,9 @@ export default function barChart(data, selected) {
             //use enter to create the correct amount of bars based on the data
             .enter()
             .append("rect")
-
             //give the bar the correct location for where the bar should be
             .attr("x", function(data) { return xAxis(data.name) })
             .attr("y", function(data) { return yAxix(data.isDisabled) })
-
             //give the bar the correct width
             //bandwidth is a standard d3 function. it gives the bars all the same width
             .attr("width", xAxis.bandwidth())
