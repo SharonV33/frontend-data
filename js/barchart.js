@@ -46,8 +46,47 @@ export default function barChart(dataFromBar, selected) {
     d3.select('#filter')
         .on("click", filterEmpty)
 
-    renderBarChart(data)
 
+    function filterEmpty() {
+        const filter = d3.selectAll('#filter').property('checked')
+        let newData = []
+
+        if (filter === true) {
+            for (let item of dataFromBar) {
+                if (item.isDisabled > 0) {
+                    // console.log("disability accesible")
+                    newData.push({name: item.name, isDisabled: item.isDisabled})
+                }
+                else {// console.log("not disability accessible")
+                    }
+            }
+        }
+        else {
+            newData = dataFromBar
+        }
+        data = newData
+
+        xAxis.domain(data.map(data =>  data.name))
+
+        svg.select(".xAxis")
+            .call(d3.axisBottom(xAxis))
+            .exit()
+            .remove("text")
+
+        svg.select("bar")
+            .attr("x", function(data) { return xAxis(data.name) })
+            .attr("y", function(data) { return yAxix(data.isDisabled) })
+            .attr("width", xAxis.bandwidth())
+            .exit()
+            .selectAll("rect")
+            .remove()
+
+
+        return data
+
+    }
+
+    renderBarChart(data)
 
     function renderBarChart(data) {
         //set up X axis
@@ -115,6 +154,7 @@ export default function barChart(dataFromBar, selected) {
         }
 
         data = newData
+        console.log(data)
 
         xAxis.domain(data.map(data =>  data.name))
 
@@ -122,7 +162,6 @@ export default function barChart(dataFromBar, selected) {
             .call(d3.axisBottom(xAxis))
             .exit()
             .remove("text")
-
 
 
         svg.select("bar")
@@ -134,6 +173,8 @@ export default function barChart(dataFromBar, selected) {
             .remove()
 
 
+        function quick (data) { yAxis(data.isDisabled)}
+        console.log(quick(data))
         return data
 
     }
