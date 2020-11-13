@@ -6,6 +6,7 @@ export default function legend(data) {
 
     const svg = d3.select("#legend")
     const size = 20
+
     const color = d3.scaleOrdinal()
         .domain(data)
         .range(["#98abc5", "#8a89a6"])
@@ -39,6 +40,8 @@ export default function legend(data) {
         .attr("x", 25 + size*1.5)
         .attr("y", function(d,i){ return 25 + i*(size+5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
         .text(function(data){ return data.name})
+
+    console.log(data)
 
     svg.selectAll("value")
         .data(data)
