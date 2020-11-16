@@ -56,16 +56,19 @@ export default function barChart(dataFromBar, selected) {
                     // console.log("disability accesible")
                     newData.push({name: item.name, isDisabled: item.isDisabled})
                 }
-                else {// console.log("not disability accessible")
-                    }
+                else {
+                    // console.log("not disability accessible")
+                }
             }
         }
         else {
             newData = dataFromBar
         }
-        // data = newData
+
+        data = newData
 
         xAxis.domain(data.map(data =>  data.name))
+
 
         svg.select(".xAxis")
             .call(d3.axisBottom(xAxis))
@@ -73,14 +76,15 @@ export default function barChart(dataFromBar, selected) {
             .remove("text")
 
         svg.select("bar")
+            .exit()
+            .remove("rect")
+
+        svg.select("bar")
             .attr("x", function(data) { return xAxis(data.name) })
             .attr("y", function(data) { return yAxix(data.isDisabled) })
-            .attr("width", xAxis.bandwidth())
-            .exit()
-            .selectAll("rect")
-            .remove()
+            .attr("width", xAxis.bandwidth(data))
 
-        return newData
+        return data
     }
 
 
@@ -124,59 +128,18 @@ export default function barChart(dataFromBar, selected) {
             .attr("height", function(data) { return height - yAxix(data.isDisabled) })
             //add colour
             .attr("fill", "#8A89A6")
-                .exit()
-                .remove("rect")
+
+        svg.selectAll("bar")
+            .exit()
+            .remove("rect")
 
 
     }
 
-    function filterEmpty() {
-        const filter = d3.selectAll('#filter').property('checked')
-        let newData = []
 
-        if (filter === true) {
-            for (let item of dataFromBar) {
-                if (item.isDisabled > 0) {
-                    // console.log("disability accesible")
-                    newData.push({name: item.name, isDisabled: item.isDisabled})
-                }
-                else {
-                    // console.log("not disability accessible")
-                }
-            }
-        }
-        else {
-            newData = dataFromBar
-        }
-
-        data = newData
-        console.log(data)
-
-        xAxis.domain(data.map(data =>  data.name))
-
-        svg.select(".xAxis")
-            .call(d3.axisBottom(xAxis))
-            .exit()
-            .remove("text")
-
-
-        svg.select("bar")
-            .attr("x", function(data) { return xAxis(data.name) })
-            .attr("y", function(data) { return yAxix(data.isDisabled) })
-            .attr("width", xAxis.bandwidth())
-            .exit()
-            .selectAll("rect")
-            .remove()
-
-
-        function quick (data) { yAxis(data.isDisabled)}
-        console.log(quick(data))
-        return data
-
-    }
 
     filterEmpty()
-    data = newData
     renderBarChart(data)
+
 
 }
