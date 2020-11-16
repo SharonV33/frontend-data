@@ -124,13 +124,8 @@ export default function barChart(dataFromBar, selected) {
                 //add colour
                 .attr("fill", "#8A89A6")
 
-            svg.selectAll("bar")
-                .exit()
-                .remove("rect")
-
 
         }
-
         renderBarChart(data)
 
     }
