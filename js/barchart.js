@@ -17,7 +17,7 @@ export default function barChart(dataFromBar, selected) {
     //create x axis
     let xAxis = d3.scaleBand()
         .range([0, width])
-        .domain(data.map(data => data.name))
+        // .domain(data.map(data => data.name))
         //give each bar some padding
         .padding(0.5)
     //create Y axis
@@ -36,6 +36,7 @@ export default function barChart(dataFromBar, selected) {
         .selectAll("*")
         .remove()
 
+    //change colour of current button
     d3.select("#workingButtons")
         .selectAll("button")
         .style("background-color", "#FFF")
@@ -63,6 +64,7 @@ export default function barChart(dataFromBar, selected) {
         }
 
         data = newData
+        console.log(data)
 
         xAxis.domain(data.map(data => data.name))
 
@@ -70,64 +72,69 @@ export default function barChart(dataFromBar, selected) {
             .exit()
             .remove("text")
 
-        svg.select("bar").exit().remove("rect")
+        svg.select("bar").exit().remove("bar")
 
         svg.select("bar")
-            .attr("x", function (data) {return xAxis(data.name)})
-            .attr("y", function (data) {return yAxix(data.isDisabled)})
+            .attr("x", function (data) {
+                return xAxis(data.name)
+            })
+            .attr("y", function (data) {
+                return yAxix(data.isDisabled)
+            })
             .attr("width", xAxis.bandwidth(data))
 
-        function renderBarChart(data) {
-            //set up X axis
-            //give the svg the correct size
-            svg.attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform",
-                    "translate(" + margin.left + "," + margin.top + ")")
-
-            //create a group for the x axis and style the text
-            svg.append("g")
-                .attr("class", "xAxis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(xAxis))
-                .selectAll("text")
-                .attr("transform", "translate(-10,10)rotate(-90)")
-                .style("text-anchor", "end")
-
-
-            //add Y axis to graph
-            svg.append("g")
-                .attr("class", "yAxis")
-                .call(d3.axisLeft(yAxix))
-
-            //create bars
-            svg.selectAll("bar")
-                .data(data)
-                //use enter to create the correct amount of bars based on the data
-                .enter()
-                .append("rect")
-                //give the bar the correct location for where the bar should be
-                .attr("x", function (data) {
-                    return xAxis(data.name)
-                })
-                .attr("y", function (data) {
-                    return yAxix(data.isDisabled)
-                })
-                //give the bar the correct width
-                //bandwidth is a standard d3 function. it gives the bars all the same width
-                .attr("width", xAxis.bandwidth())
-                //give the bar the correct height based on the value of data.isDisabled
-                .attr("height", function (data) {
-                    return height - yAxix(data.isDisabled)
-                })
-                //add colour
-                .attr("fill", "#8A89A6")
-
-
-        }
         renderBarChart(data)
+        return data
 
+    }
+    function renderBarChart(data) {
+        //set up X axis
+        //give the svg the correct size
+        svg.attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")")
+
+        //create a group for the x axis and style the text
+        svg.append("g")
+            .attr("class", "xAxis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(xAxis))
+            .selectAll("text")
+            .attr("transform", "translate(-10,10)rotate(-90)")
+            .style("text-anchor", "end")
+
+
+        //add Y axis to graph
+        svg.append("g")
+            .attr("class", "yAxis")
+            .call(d3.axisLeft(yAxix))
+
+        //create bars
+        svg.selectAll("bar")
+            .data(data)
+            //use enter to create the correct amount of bars based on the data
+            .enter()
+            .append("rect")
+            //give the bar the correct location for where the bar should be
+            .attr("x", function (data) {
+                return xAxis(data.name)
+            })
+            .attr("y", function (data) {
+                return yAxix(data.isDisabled)
+            })
+            //give the bar the correct width
+            //bandwidth is a standard d3 function. it gives the bars all the same width
+            .attr("width", xAxis.bandwidth())
+            //give the bar the correct height based on the value of data.isDisabled
+            .attr("height", function (data) {
+                return height - yAxix(data.isDisabled)
+            })
+            //add colour
+            .attr("fill", "#8A89A6")
+            .exit()
+            .remove("bar")
     }
 
     filterEmpty()
