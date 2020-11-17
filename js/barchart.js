@@ -47,6 +47,9 @@ export default function barChart(dataFromBar, selected) {
     d3.select('#filter')
         .on("click", filterEmpty)
 
+    filterEmpty()
+
+
     function filterEmpty() {
         const filter = d3.selectAll('#filter').property('checked')
         let newData = []
@@ -64,29 +67,19 @@ export default function barChart(dataFromBar, selected) {
         }
 
         data = newData
-        console.log(data)
 
         xAxis.domain(data.map(data => data.name))
 
         svg.select(".xAxis").call(d3.axisBottom(xAxis))
-            .exit()
-            .remove("text")
-
-        svg.select("bar").exit().remove("bar")
 
         svg.select("bar")
-            .attr("x", function (data) {
-                return xAxis(data.name)
-            })
-            .attr("y", function (data) {
-                return yAxix(data.isDisabled)
-            })
-            .attr("width", xAxis.bandwidth(data))
+            .data(data)
 
         renderBarChart(data)
         return data
 
     }
+
     function renderBarChart(data) {
         //set up X axis
         //give the svg the correct size
@@ -104,7 +97,8 @@ export default function barChart(dataFromBar, selected) {
             .selectAll("text")
             .attr("transform", "translate(-10,10)rotate(-90)")
             .style("text-anchor", "end")
-
+            .exit()
+            .remove("*")
 
         //add Y axis to graph
         svg.append("g")
@@ -134,8 +128,6 @@ export default function barChart(dataFromBar, selected) {
             //add colour
             .attr("fill", "#8A89A6")
             .exit()
-            .remove("bar")
+            .remove("*")
     }
-
-    filterEmpty()
 }
