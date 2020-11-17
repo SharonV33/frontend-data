@@ -17,7 +17,6 @@ export default function barChart(dataFromBar, selected) {
     //create x axis
     let xAxis = d3.scaleBand()
         .range([0, width])
-        // .domain(data.map(data => data.name))
         //give each bar some padding
         .padding(0.5)
     //create Y axis
@@ -70,10 +69,19 @@ export default function barChart(dataFromBar, selected) {
 
         xAxis.domain(data.map(data => data.name))
 
-        svg.select(".xAxis").call(d3.axisBottom(xAxis))
+        svg.select(".xAxis").call(d3.axisBottom(xAxis)).exit().remove()
 
-        svg.select("bar")
-            .data(data)
+
+        svg.selectAll(".bar")
+            .exit()
+            .remove()
+
+        // svg.select(".bar").enter().append('rect')
+
+        svg.selectAll(".bar")
+            .selectAll("rect")
+            .attr("fill", "#000000")
+
 
         renderBarChart(data)
         return data
@@ -97,8 +105,7 @@ export default function barChart(dataFromBar, selected) {
             .selectAll("text")
             .attr("transform", "translate(-10,10)rotate(-90)")
             .style("text-anchor", "end")
-            .exit()
-            .remove("*")
+
 
         //add Y axis to graph
         svg.append("g")
@@ -108,6 +115,7 @@ export default function barChart(dataFromBar, selected) {
         //create bars
         svg.selectAll("bar")
             .data(data)
+            .attr("class", "bar")
             //use enter to create the correct amount of bars based on the data
             .enter()
             .append("rect")
@@ -128,6 +136,6 @@ export default function barChart(dataFromBar, selected) {
             //add colour
             .attr("fill", "#8A89A6")
             .exit()
-            .remove("*")
+            .remove()
     }
 }
