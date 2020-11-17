@@ -69,18 +69,23 @@ export default function barChart(dataFromBar, selected) {
 
         xAxis.domain(data.map(data => data.name))
 
-        svg.select(".xAxis").call(d3.axisBottom(xAxis)).exit().remove()
-
+        svg.select(".xAxis").call(d3.axisBottom(xAxis)).exit().remove("text")
 
         svg.selectAll(".bar")
-            .exit()
-            .remove()
+            .data(data)
+            .selectAll("rect")
+            .attr("fill", "#000000")
 
-        // svg.select(".bar").enter().append('rect')
+        svg.select(".bar").enter().append('rect')
 
         svg.selectAll(".bar")
             .selectAll("rect")
-            .attr("fill", "#000000")
+            .exit()
+            .remove("rect")
+
+
+
+
 
 
         renderBarChart(data)
