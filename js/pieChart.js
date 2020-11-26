@@ -65,4 +65,6 @@ export default function buildPieChart(data, selected) {
         .attr('d', path)
         .attr('fill', data => color(data.value))
 
+    console.log(data)
+
 }

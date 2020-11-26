@@ -32,7 +32,7 @@ function fetchData() {
                 if(!item.specifications[0].disabledAccess) {
                     return null
                 }
-                return item.specifications[0].disabledAccess
+                return item.specifications[0].disabledAccess 
             })
 
             //check if item has the correct values, else return null

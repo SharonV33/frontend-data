@@ -91,7 +91,6 @@ export default function barChart(dataFromBar, selected) {
             .remove()
     }
     function filterEmpty() {
-        console.log("hi");
         const filter = d3.selectAll('#filter').property('checked')
         let newData = []
 
@@ -119,6 +118,7 @@ export default function barChart(dataFromBar, selected) {
             .style("text-anchor", "end")
             .exit()
             .remove("text")
+
         const bars = svg.selectAll("rect")
             .data(data)
         bars
